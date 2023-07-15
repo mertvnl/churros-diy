@@ -12,7 +12,7 @@ public static class Bootstrapper
         Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load(MANAGERS_OBJECT_NAME)));
         Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load(UI_OBJECT_NAME)));
 
-        await Task.Delay(3000);
+        await Task.Delay(1);
 
 #if UNITY_EDITOR
         //Only for testing purposes.

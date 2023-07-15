@@ -99,7 +99,15 @@ public class LevelManager : Singleton<LevelManager>
 
     public void LoadCurrentEditorLevel()
     {
-        currentLevelIndex = levelDatabase.GetLevelIndexById(SceneManager.GetActiveScene().name);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (!levelDatabase.levels.Any(x => x.levelId == currentSceneName))
+        {
+            OnLevelLoaded.Invoke();
+            return;
+        }
+
+        currentLevelIndex = levelDatabase.GetLevelIndexById(currentSceneName);
         CurrentLevel = levelDatabase.GetLevelByIndex(currentLevelIndex);
         OnLevelLoaded.Invoke();
     }
