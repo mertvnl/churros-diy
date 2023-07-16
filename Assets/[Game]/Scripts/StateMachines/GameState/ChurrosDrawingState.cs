@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Game.Runtime 
+{   
+    public class ChurrosDrawingState : GameStateBase
+    {
+        public ChurrosDrawingState(GameStateMachine stateMachine) : base(stateMachine) { }        
+
+        public override void EnterState()
+        {
+          
+        }
+    }
+}
+
