@@ -23,14 +23,20 @@ namespace Game.Runtime
         {
             _currentStateIndex++;
 
-            if (_currentStateIndex >= GameStates.Count)
+            if (_currentStateIndex >= GameStates.Count) 
+            {
+                GameStateManager.Instance.OnAllStatesCompleted.Invoke();
                 return;
+            }            
 
             SetState(_currentStateIndex);
         }
 
         private void SetState(int stateIndex) 
         {
+            if (_currentStateIndex >= GameStates.Count)
+                return;
+
             CurrentState = GameStates[stateIndex];
             CurrentState.EnterState();
         }
@@ -40,6 +46,7 @@ namespace Game.Runtime
             GameStates = new List<GameStateBase>()
             {
                 new BeginingState(this),
+                new CustomerOrderState(this),
                 new ChurrosDrawingState(this),
                 new ChurrosFryingState(this),
                 new WhippedCreamState(this),
