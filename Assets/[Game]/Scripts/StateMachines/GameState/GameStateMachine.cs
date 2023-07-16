@@ -19,7 +19,7 @@ namespace Game.Runtime
             SetState(_currentStateIndex);
         }
 
-        public void TriggerNextState() 
+        public void EnterNextState() 
         {
             _currentStateIndex++;
 
