@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Enums 
+namespace Game.Runtime 
 {
-    public enum CameraID
+    public class MainVirtualCamera : VirtualCameraBase
     {
-        None = 0,
-        MainCamera = 10
+       
     }
 }
-

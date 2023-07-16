@@ -2,6 +2,7 @@ using Cinemachine;
 using Game.Enums;
 using Game.Interfaces;
 using Game.Runtime;
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,7 @@ using UnityEngine;
 namespace Game.Managers 
 {
     public class CameraManager : Singleton<CameraManager>
-    {
-        [Sirenix.OdinInspector.ShowInInspector]
+    {        
         private Dictionary<CameraID, IVirtualCamera> _virtualCameras = new();
         public Dictionary<CameraID, IVirtualCamera> VirtualCameras { get => _virtualCameras; private set => _virtualCameras = value; }
         public CameraBrain CameraBrain { get; private set; }
