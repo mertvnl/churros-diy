@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Runtime 
 {
-    public class MainVirtualCamera : VirtualCameraBase
+    public class DrawingVirtualCamera : VirtualCameraBase
     {
        
     }

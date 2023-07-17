@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace Game.Enums 
 {
-    public enum CameraID
+    public enum PanelID
     {
         None = 0,
-        CustomerCamera = 10,
-        DrawingCamera = 20
+        LevelStartPanel = 10
     }
 }
 

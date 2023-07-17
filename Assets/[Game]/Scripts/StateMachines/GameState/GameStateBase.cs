@@ -17,6 +17,7 @@ namespace Game.Runtime
         }
 
         public abstract void EnterState();
+        public virtual void ExitState() { }
     }
 }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Utilities;
+using Game.Managers;
 
 namespace Game.Runtime 
 {
@@ -18,7 +19,10 @@ namespace Game.Runtime
         public override void EnterState()
         {
             CustomerAnimation.SetTrigger(AnimatorStrings.Idle);
-            CustomerRotation.LookPosition(Vector3.zero);
+            CustomerRotation.LookPosition(Vector3.zero, onComplete: () => 
+            {
+                GameStateManager.Instance.CurrentStateMachine.EnterNextState();
+            });            
         }
     }
 }

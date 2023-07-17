@@ -4,6 +4,8 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 using System;
+using Game.Enums;
+using Game.Interfaces;
 
 public enum PanelAnimationTypes
 {
@@ -12,12 +14,14 @@ public enum PanelAnimationTypes
 }
 
 [RequireComponent(typeof(CanvasGroup))]
-public class EasyPanel : MonoBehaviour
+public class EasyPanel : MonoBehaviour, IPanel
 {
     #region Getters
     private CanvasGroup canvasGroup;
     public CanvasGroup CanvasGroup { get { return canvasGroup == null ? canvasGroup = GetComponent<CanvasGroup>() : canvasGroup; } }
     #endregion
+
+    [field : SerializeField] public PanelID PanelID { get; private set; }
 
     [SerializeField] private PanelAnimationTypes panelAnimationTypes;
 
@@ -35,10 +39,10 @@ public class EasyPanel : MonoBehaviour
         switch (panelAnimationTypes)
         {
             case PanelAnimationTypes.Fade:
-                FadePanel(1, 0.5f, ShowPanel);
+                FadePanel(1, 0.25f, ShowPanel);
                 break;
             case PanelAnimationTypes.Scale:
-                ScalePanel(true, 0.5f);
+                ScalePanel(true, 0.25f);
                 break;
         }
     }
@@ -57,10 +61,10 @@ public class EasyPanel : MonoBehaviour
         switch (panelAnimationTypes)
         {
             case PanelAnimationTypes.Fade:
-                FadePanel(0, 0.5f, HidePanel);
+                FadePanel(0, 0.25f, HidePanel);
                 break;
             case PanelAnimationTypes.Scale:
-                ScalePanel(false, 0.5f);
+                ScalePanel(false, 0.25f);
                 break;
         }
     }

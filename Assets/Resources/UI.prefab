@@ -9946,6 +9946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51556e822853741f488fa8592bf041fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PanelID>k__BackingField: 0
   panelAnimationTypes: 0
 --- !u!1 &2046219102817073610
 GameObject:
@@ -10280,6 +10281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836c535db9fadda47b415c9e92f5b39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PanelID>k__BackingField: 0
   panelAnimationTypes: 0
 --- !u!1 &3886282258143172022
 GameObject:
@@ -10334,6 +10336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0294e8022951f4f188750ff43d3c1e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PanelID>k__BackingField: 10
   panelAnimationTypes: 0
 --- !u!225 &5590229040529060488
 CanvasGroup:
@@ -10343,9 +10346,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3886282258143172022}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &4098836481422979898
 GameObject:
@@ -11290,6 +11293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541bd7ec27d73be4191bc06167a2d760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PanelID>k__BackingField: 0
   panelAnimationTypes: 1
 --- !u!225 &8244591925095604009
 CanvasGroup:
@@ -11407,6 +11411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d69b3a998102a41b6769782870fe13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PanelID>k__BackingField: 0
   panelAnimationTypes: 1
 --- !u!1 &6970742525652595545
 GameObject:
@@ -21610,6 +21615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b2a53d8704b4120a27189878d05097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PanelID>k__BackingField: 0
   panelAnimationTypes: 0
 --- !u!1 &8952234356484582782
 GameObject:

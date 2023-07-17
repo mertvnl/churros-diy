@@ -1,6 +1,6 @@
 using System;
 
-public static class Events
+public static class EventManager
 {
     //Put your events here.
 
