@@ -10,14 +10,14 @@ namespace Game.Managers
     {
         public GameStateMachine CurrentStateMachine { get; private set; }
 
-        public UnityEvent OnEnterBeginningState { get; private set; } = new UnityEvent();
-        public UnityEvent OnEnterCustomerOrderState { get; private set; } = new UnityEvent();
-        public UnityEvent OnEnterChurrosDrawingState { get; private set; } = new UnityEvent();
-        public UnityEvent OnEnterChurrosFryingState { get; private set; } = new UnityEvent();
-        public UnityEvent OnEnterWhippedCreamState { get; private set; } = new UnityEvent();
-        public UnityEvent OnEnterSyrupState { get; private set; } = new UnityEvent();
-        public UnityEvent OnEnterToppingState{ get; private set; } = new UnityEvent();
-        public UnityEvent OnAllStatesCompleted { get; private set; } = new UnityEvent();
+        public UnityEvent OnEnterBeginningState { get; private set; } = new();
+        public UnityEvent OnEnterCustomerOrderState { get; private set; } = new();
+        public UnityEvent OnEnterChurrosDrawingState { get; private set; } = new();
+        public UnityEvent OnEnterChurrosFryingState { get; private set; } = new();
+        public UnityEvent OnEnterWhippedCreamState { get; private set; } = new();
+        public UnityEvent OnEnterSyrupState { get; private set; } = new();
+        public UnityEvent OnEnterToppingState{ get; private set; } = new();
+        public UnityEvent OnAllStatesCompleted { get; private set; } = new();
 
         public void SetCurrentStateMachine(GameStateMachine stateMachine) 
         {

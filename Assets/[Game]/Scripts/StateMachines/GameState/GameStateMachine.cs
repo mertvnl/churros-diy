@@ -15,7 +15,11 @@ namespace Game.Runtime
         private void Awake()
         {
             GameStateManager.Instance.SetCurrentStateMachine(this);
-            SetGameStates();
+            SetGameStates();            
+        }
+
+        private void Start()
+        {
             SetState(_currentStateIndex);
         }
 
