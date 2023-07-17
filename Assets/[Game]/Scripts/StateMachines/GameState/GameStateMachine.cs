@@ -50,7 +50,7 @@ namespace Game.Runtime
             GameStates = new List<GameStateBase>()
             {
                 new BeginingState(this),
-                new CustomerOrderState(this),
+                new ChurrosOrderState(this),
                 new ChurrosDrawingState(this),
                 new ChurrosFryingState(this),
                 new WhippedCreamState(this),

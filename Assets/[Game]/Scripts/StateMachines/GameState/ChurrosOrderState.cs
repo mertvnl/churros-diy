@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Game.Runtime 
 {
-    public class CustomerOrderState : GameStateBase
+    public class ChurrosOrderState : GameStateBase
     {
-        public CustomerOrderState(GameStateMachine stateMachine) : base(stateMachine) { }        
+        public ChurrosOrderState(GameStateMachine stateMachine) : base(stateMachine) { }        
 
         public override void EnterState()
         {

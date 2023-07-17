@@ -6,9 +6,12 @@ using Game.Utilities;
 
 namespace Game.Runtime 
 {
-    public class CustomerCreator : MonoBehaviour
+    public class CustomerController : MonoBehaviour
     {
         [SerializeField] private Transform spawnPoint;
+        [SerializeField] private Transform cashierPoint;
+        [SerializeField] private Transform exitPoint;
+        [Space(15)]
         [SerializeField] private List<GameObject> customerPrefabs = new();
 
         private void OnEnable()
@@ -25,7 +28,7 @@ namespace Game.Runtime
         {
             GameObject customerPrefab = GetRandomCustomerPrefab();
             Customer customer = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity).GetComponent<Customer>();
-            customer.Initialize();
+            customer.Initialize(cashierPoint.position, exitPoint.position);
         }
 
         private GameObject GetRandomCustomerPrefab() 
