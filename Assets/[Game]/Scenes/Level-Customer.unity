@@ -1603,6 +1603,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Customer
       objectReference: {fileID: 0}
+    - target: {fileID: 2446943130182988002, guid: 2569108a9bee9184daa328279df6fdf4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4166480377025495700, guid: 2569108a9bee9184daa328279df6fdf4, type: 3}
       propertyPath: m_RootOrder
       value: 6

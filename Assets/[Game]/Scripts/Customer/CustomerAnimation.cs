@@ -7,12 +7,11 @@ namespace Game.Runtime
     public class CustomerAnimation : MonoBehaviour
     {
         private Animator _animator;
-        public Animator Animator => _animator == null ? _animator = GetComponentInChildren<Animator>() : _animator;
-        
+        public Animator Animator => _animator == null ? _animator = GetComponentInChildren<Animator>() : _animator;        
 
-        public void SetTrigger() 
+        public void SetTrigger(int id) 
         {
-            
+            Animator.SetTrigger(id);
         }
     }
 }
