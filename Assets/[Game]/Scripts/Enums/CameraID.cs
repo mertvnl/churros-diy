@@ -7,7 +7,8 @@ namespace Game.Enums
     public enum CameraID
     {
         None = 0,
-        MainCamera = 10
+        CustomerCamera = 10,
+        DrawingCamera = 20
     }
 }
 
