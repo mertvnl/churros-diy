@@ -41,6 +41,7 @@ namespace Game.Runtime
             if (_currentStateIndex >= GameStates.Count)
                 return;
 
+            CurrentState?.ExitState();
             CurrentState = GameStates[stateIndex];
             CurrentState.EnterState();
         }
