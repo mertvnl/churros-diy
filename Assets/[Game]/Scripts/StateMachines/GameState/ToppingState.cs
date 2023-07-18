@@ -13,6 +13,11 @@ namespace Game.Runtime
         {
             GameStateManager.Instance.OnEnterToppingState.Invoke();
         }
+
+        public override void ExitState()
+        {
+            GameStateManager.Instance.OnExitToppingState.Invoke();
+        }
     }
 }
 

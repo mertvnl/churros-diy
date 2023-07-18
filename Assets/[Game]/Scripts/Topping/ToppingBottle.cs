@@ -1,19 +1,63 @@
+using DG.Tweening;
+using Game.Managers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Runtime 
 {
     public class ToppingBottle : MonoBehaviour
     {
+        public bool IsActive { get; private set; }
+        public UnityEvent OnActivated { get; private set; } = new();
+        public UnityEvent OnDisabled { get; private set; } = new();
+
+        [SerializeField] private Transform toppingPoint;
+
+        private const float MOVEMENT_DURATION = 0.5f;
+
+        private Vector3 _defaultPosition;
+        private Tween _movementTween;
+
+        private void Awake()
+        {
+            _defaultPosition = transform.position;
+        }
+
         private void OnEnable()
         {
-            
+            GameStateManager.Instance.OnEnterToppingState.AddListener(ActivateTopping);
+            GameStateManager.Instance.OnExitToppingState.AddListener(DisableTopping);
         }
 
         private void OnDisable()
         {
-            
+            GameStateManager.Instance.OnEnterToppingState.RemoveListener(ActivateTopping);
+            GameStateManager.Instance.OnExitToppingState.RemoveListener(DisableTopping);
+        }        
+
+        private void ActivateTopping()
+        {
+            MoveTween(toppingPoint.position, () =>
+            {
+                IsActive = true;
+                OnActivated.Invoke();
+            });
+        }
+
+        private void DisableTopping() 
+        {
+            IsActive = false;
+            MoveTween(_defaultPosition);
+            OnDisabled.Invoke();
+        }
+
+        private void MoveTween(Vector3 endValue, Action onComplete = null) 
+        {
+            _movementTween?.Kill();
+            _movementTween = transform.DOMove(endValue, MOVEMENT_DURATION).SetEase(Ease.Linear).OnComplete(() => onComplete?.Invoke());
         }
     }
 }
