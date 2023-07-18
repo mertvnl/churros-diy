@@ -14,8 +14,9 @@ namespace Game.UI
         public ToppingDatabase ToppingDatabase => ToppingManager.Instance.ToppingDatabase;
         public List<ToppingToggle> ToppingToggles { get; private set; } = new();
 
+        [Header("Topping Selection Panel")]
         [SerializeField] private GameObject togglePrefab;
-        [SerializeField] private Transform content;
+        [SerializeField] private Transform content;       
 
         private void Awake()
         {
