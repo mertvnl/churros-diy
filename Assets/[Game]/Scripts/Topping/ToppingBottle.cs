@@ -10,20 +10,20 @@ namespace Game.Runtime
 {
     public class ToppingBottle : MonoBehaviour
     {
+        public Vector3 DefaultPosition { get; private set; }
+        public Vector3 OffsetPosition { get; private set; }
         public bool IsActive { get; private set; }
         public UnityEvent OnActivated { get; private set; } = new();
         public UnityEvent OnDisabled { get; private set; } = new();
 
-        [SerializeField] private Transform toppingPoint;
-
-        private const float MOVEMENT_DURATION = 0.5f;
-
-        private Vector3 _defaultPosition;
+        private const float MOVEMENT_OFFSET = 3f;
+        private const float MOVEMENT_DURATION = 0.5f;       
+        
         private Tween _movementTween;
 
         private void Awake()
         {
-            _defaultPosition = transform.position;
+            Initialize();
         }
 
         private void OnEnable()
@@ -36,11 +36,18 @@ namespace Game.Runtime
         {
             GameStateManager.Instance.OnEnterToppingState.RemoveListener(ActivateTopping);
             GameStateManager.Instance.OnExitToppingState.RemoveListener(DisableTopping);
-        }        
+        }
+
+        private void Initialize()
+        {
+            DefaultPosition = transform.localPosition;
+            OffsetPosition = DefaultPosition + MOVEMENT_OFFSET * Vector3.up;
+            transform.localPosition = OffsetPosition;
+        }
 
         private void ActivateTopping()
         {
-            MoveTween(toppingPoint.position, () =>
+            MoveTween(DefaultPosition, () =>
             {
                 IsActive = true;
                 OnActivated.Invoke();
@@ -50,7 +57,7 @@ namespace Game.Runtime
         private void DisableTopping() 
         {
             IsActive = false;
-            MoveTween(_defaultPosition);
+            MoveTween(OffsetPosition);
             OnDisabled.Invoke();
         }
 
