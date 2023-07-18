@@ -8,10 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Churros
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: f8d49205b3b0a644195633020367689d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - TCP2_DISABLE_WRAPPED_LIGHT
+  - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  - _SPECULARHIGHLIGHTS_OFF
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -47,6 +50,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MatCap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,25 +66,58 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: abc83c21d57d4a74cabe12065fa1a8b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _DstBlendOutline: 10
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 1
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Offset1: 0
+    - _Offset2: 0
+    - _Outline: 1
     - _Parallax: 0.02
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
+    - _RampSmooth: 0.438
+    - _RampSmoothAdd: 0.448
+    - _RampThreshold: 1
+    - _RimMax: 1
+    - _RimMin: 0.505
+    - _RimStrength: 0.09
+    - _Shininess: 0.01
+    - _SmoothnessTextureChannel: 1
+    - _SpecBlend: 1
+    - _SpecSmooth: 0
+    - _SpecularHighlights: 0
     - _SrcBlend: 1
+    - _SrcBlendOutline: 5
+    - _TCP2_DISABLE_WRAPPED_LIGHT: 1
+    - _TCP2_OUTLINE_CONST_SIZE: 0
+    - _TCP2_OUTLINE_TEXTURED: 0
+    - _TCP2_RAMPTEXT: 0
+    - _TCP2_SPEC_TOON: 0
+    - _TCP2_STYLIZED_FRESNEL: 0
+    - _TCP2_ZSMOOTH_ON: 0
+    - _TexLod: 5
     - _UVSec: 0
+    - _ZSmooth: -0.5
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.9433962, g: 0.529718, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.972549, b: 0.5882353, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
+    - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.6}
+    - _RimDir: {r: 0, g: 0, b: 1, a: 0}
+    - _SColor: {r: 0.7169812, g: 0.52420795, b: 0.52420795, a: 1}
+    - _SpecColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
   m_BuildTextureStacks: []

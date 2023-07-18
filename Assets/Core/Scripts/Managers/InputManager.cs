@@ -5,6 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class SwipeEvent : UnityEvent<SwipeData> { }
+public class TouchEvent : UnityEvent<TouchData> { }
+
 public enum SwipeDirection
 {
     None,
@@ -25,10 +27,17 @@ public class SwipeData
     }
 }
 
+public class TouchData
+{
+    public bool IsTouched = false;
+}
+
 public class InputManager : Singleton<InputManager>
 {
     [HideInInspector]
     public SwipeEvent OnSwipe = new SwipeEvent();
+    [HideInInspector]
+    public TouchEvent OnTouch = new();
 
     [Header("Swipe Settings")]
     private float swipeHoldThreshold = 0.05f;
@@ -37,6 +46,8 @@ public class InputManager : Singleton<InputManager>
     Vector2 firstPos;
     Vector2 secondPos;
     float timePassed;
+
+    private TouchData _touchData = new();
 
     private void Update()
     {
@@ -61,10 +72,17 @@ public class InputManager : Singleton<InputManager>
             //LevelManager.Instance.StartLevel();
             timePassed = 0;
             firstPos = Input.mousePosition;
+
+            _touchData.IsTouched = true;
+            OnTouch.Invoke(_touchData);
         }
         else if (Input.GetMouseButtonUp(0))
         {
             secondPos = Input.mousePosition;
+
+            _touchData.IsTouched = false;
+            OnTouch.Invoke(_touchData);
+
 
             if (timePassed < swipeHoldThreshold || Vector2.Distance(firstPos, secondPos) < swipeDistanceThreshold)
                 return;
