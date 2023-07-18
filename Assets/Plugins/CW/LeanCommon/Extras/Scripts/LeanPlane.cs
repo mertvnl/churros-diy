@@ -98,8 +98,9 @@ namespace Lean.Common
 		}
 
 #if UNITY_EDITOR
-		protected virtual void OnDrawGizmosSelected()
+		protected virtual void OnDrawGizmos()
 		{
+			Gizmos.color = Color.red;
 			Gizmos.matrix = transform.localToWorldMatrix;
 
 			var x1 = MinX;

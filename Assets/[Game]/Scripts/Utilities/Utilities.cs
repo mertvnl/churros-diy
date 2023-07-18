@@ -16,6 +16,14 @@ namespace Game.Utilities
                 list[randomIndex] = value;
             }
         }
+
+        public static void Swap<T>(this List<T> list, int pos1, int pos2)
+        {
+            T tmp = list[pos1];
+            list[pos1] = list[pos2];
+            list[pos2] = tmp;
+
+        }
     }
 }
 

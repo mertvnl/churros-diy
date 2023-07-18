@@ -1,5 +1,6 @@
 using Dreamteck.Splines;
 using Game.Managers;
+using Lean.Touch;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace Game.Runtime
     {
         private SplineComputer _splineComputer;
         public SplineComputer SplineComputer => _splineComputer == null ? _splineComputer = ChurrosManager.Instance.CurrentChurros.SplineComputer : _splineComputer;
+
+        private LeanSelectableByFinger _leanSelectable;
+        private LeanSelectableByFinger LeanSelectable => _leanSelectable == null ? _leanSelectable = GetComponent<LeanSelectableByFinger>() : _leanSelectable;
 
         [SerializeField] private LayerMask spawnableLayer;
         [SerializeField] private Transform raycastPoint;
@@ -101,6 +105,9 @@ namespace Game.Runtime
         private bool CanSpawnPoint()
         {
             if (!_isAvailable)
+                return false;
+
+            if (!LeanSelectable.IsSelected)
                 return false;
 
             if (IsMaxPointReached())
