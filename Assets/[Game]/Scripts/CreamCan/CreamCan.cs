@@ -16,6 +16,7 @@ namespace Game.Runtime
 
         [SerializeField] private Transform graphics;
         [SerializeField] private LayerMask ignoreLayer;
+        [SerializeField] private GameObject indicator;
 
         private Vector3 _initialRotation;
         private float _initialY;
@@ -73,6 +74,7 @@ namespace Game.Runtime
 
             void OnMovementCompleted()
             {
+                indicator.SetActive(true);
                 LeanSelectable.enabled = true;
             }
         }
@@ -116,7 +118,7 @@ namespace Game.Runtime
         private void Dispose()
         {
             _isDispoed = true;
-
+            indicator.SetActive(false);
             _deselectTween?.Kill();
 
             graphics.DOLocalMoveX(STARTING_POS_X, 1f).OnComplete(OnMovementCompleted);

@@ -20,6 +20,7 @@ namespace Game.Runtime
         private LeanSelectableByFinger LeanSelectable => _leanSelectable == null ? _leanSelectable = GetComponent<LeanSelectableByFinger>() : _leanSelectable;
 
         [SerializeField] private Transform graphics;
+        [SerializeField] private GameObject indicator;
 
         private Vector3 _initialScale;
         private float _initialX;
@@ -65,6 +66,7 @@ namespace Game.Runtime
                 LeanSelectable.enabled = true;
                 LeanMover.enabled = true;
                 ChurrosGenerator.SetActivation(true);
+                indicator.SetActive(true);
             }
         }
 
@@ -72,6 +74,7 @@ namespace Game.Runtime
         {
             DisableLeanSelectable();
             graphics.DOLocalMoveX(-STARTING_POS_X, 1f).OnComplete(OnMovementCompleted);
+            indicator.SetActive(false);
 
             void OnMovementCompleted()
             {
