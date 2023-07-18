@@ -1,3 +1,4 @@
+using Game.Managers;
 using Game.Models;
 using Game.Utilities;
 using System.Collections;
@@ -18,6 +19,18 @@ namespace Game.Runtime
 
         private List<CreamItemUI> _creamItems = new();
         private CreamItemUI _defaultCreamItem;
+
+        private void OnEnable()
+        {
+            GameStateManager.Instance.OnEnterWhippedCreamState.AddListener(ShowPanelAnimated);
+            GameStateManager.Instance.OnExitWhippedCreamState.AddListener(HidePanelAnimated);
+        }
+
+        private void OnDisable()
+        {
+            GameStateManager.Instance.OnEnterWhippedCreamState.RemoveListener(ShowPanelAnimated);
+            GameStateManager.Instance.OnExitWhippedCreamState.RemoveListener(HidePanelAnimated);
+        }
 
         private void Awake()
         {

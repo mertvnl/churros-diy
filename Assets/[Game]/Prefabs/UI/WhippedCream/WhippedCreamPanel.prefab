@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PanelID>k__BackingField: 20
-  panelAnimationTypes: 1
+  panelAnimationTypes: 0
   creamDatabase: {fileID: 11400000, guid: 2745e585b258aaf46bfeead7207cbbe8, type: 2}
   content: {fileID: 4520528596136409859}
   creamItemPrefab: {fileID: 2651453232603474702, guid: 8f19335155d410f46b0795713712c3f0, type: 3}

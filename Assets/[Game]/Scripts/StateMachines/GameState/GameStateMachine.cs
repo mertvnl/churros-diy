@@ -1,4 +1,5 @@
 using Game.Managers;
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace Game.Runtime
             SetState(_currentStateIndex);
         }
 
+        [Button]
         private void SetState(int stateIndex) 
         {
             if (_currentStateIndex >= GameStates.Count)

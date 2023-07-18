@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Game.Managers;
 using Lean.Touch;
 using Sirenix.OdinInspector;
 using System.Collections;
@@ -19,11 +20,24 @@ namespace Game.Runtime
         private LeanSelectableByFinger LeanSelectable => _leanSelectable == null ? _leanSelectable = GetComponent<LeanSelectableByFinger>() : _leanSelectable;
 
         [SerializeField] private Transform graphics;
+        [SerializeField] private GameObject indicator;
 
         private Vector3 _initialScale;
         private float _initialX;
 
-        private const float STARTING_POS_X = 3f;
+        private const float STARTING_POS_X = 1f;
+
+        private void OnEnable()
+        {
+            GameStateManager.Instance.OnEnterChurrosDrawingState.AddListener(InitialMovement);
+            GameStateManager.Instance.OnExitChurrosDrawingState.AddListener(Dispose);
+        }
+
+        private void OnDisable()
+        {
+            GameStateManager.Instance.OnEnterChurrosDrawingState.RemoveListener(InitialMovement);
+            GameStateManager.Instance.OnExitChurrosDrawingState.RemoveListener(Dispose);
+        }
 
         private void Awake()
         {
@@ -44,15 +58,27 @@ namespace Game.Runtime
         [Button]
         private void InitialMovement()
         {
-            graphics.DOScale(_initialScale, 0.25f);
-            graphics.DOLocalMoveX(_initialX, 1f).OnComplete(OnMovementCompleted);
-            //TODO: comes from left to initial point.
+            graphics.DOScale(_initialScale, 0.25f).SetDelay(0.5f);
+            graphics.DOLocalMoveX(_initialX, 1f).OnComplete(OnMovementCompleted).SetDelay(0.5f);
 
             void OnMovementCompleted()
             {
                 LeanSelectable.enabled = true;
                 LeanMover.enabled = true;
                 ChurrosGenerator.SetActivation(true);
+                indicator.SetActive(true);
+            }
+        }
+
+        private void Dispose()
+        {
+            DisableLeanSelectable();
+            graphics.DOLocalMoveX(-STARTING_POS_X, 1f).OnComplete(OnMovementCompleted);
+            indicator.SetActive(false);
+
+            void OnMovementCompleted()
+            {
+                graphics.DOScale(Vector3.zero, 0.25f);
             }
         }
 
