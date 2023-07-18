@@ -20,9 +20,10 @@ namespace Game.Runtime
         private Vector3 _initialRotation;
         private float _initialY;
         private Tween _rotationTween;
+        private Tween _deselectTween;
         private Vector3 _initialScale;
         private float _initialX;
-        private bool _isDisposed;
+        private bool _isDispoed;
 
         private const float TARGET_ROTATION_Z = 140f;
         private const float OFFSET_Y = 0.02f;
@@ -94,6 +95,9 @@ namespace Game.Runtime
 
         private void SelectTween(LeanFinger arg0)
         {
+            if (_isDispoed)
+                return;
+
             Vector3 targetRotation = new(_initialRotation.x, _initialRotation.y, TARGET_ROTATION_Z);
             _rotationTween?.Kill();
             _rotationTween = graphics.DOLocalRotate(targetRotation, 0.6f);
@@ -101,17 +105,19 @@ namespace Game.Runtime
 
         private void DeselectTween(LeanFinger arg0)
         {
-            if (_isDisposed) 
+            if (_isDispoed)
                 return;
 
             _rotationTween?.Kill();
             _rotationTween = graphics.DOLocalRotate(_initialRotation, 0.25f);
-            graphics.DOMoveY(_initialY, 0.25f);
+            _deselectTween = graphics.DOMoveY(_initialY, 0.25f);
         }
 
         private void Dispose()
         {
-            _isDisposed = true;
+            _isDispoed = true;
+
+            _deselectTween?.Kill();
 
             graphics.DOLocalMoveX(STARTING_POS_X, 1f).OnComplete(OnMovementCompleted);
 
