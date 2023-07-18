@@ -9,6 +9,7 @@ namespace Game.Enums
         None = 0,
         LevelStartPanel = 10,
         WhippedCreamPanel = 20,
+        ToppingSelectionPanel = 30
     }
 }
 
