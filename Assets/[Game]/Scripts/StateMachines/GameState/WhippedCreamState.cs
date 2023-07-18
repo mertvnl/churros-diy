@@ -13,5 +13,10 @@ namespace Game.Runtime
         {
             GameStateManager.Instance.OnEnterWhippedCreamState.Invoke();
         }
+
+        public override void ExitState()
+        {
+            GameStateManager.Instance.OnExitWhippedCreamState.Invoke();
+        }
     }
 }

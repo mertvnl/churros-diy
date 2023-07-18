@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Game.Managers;
 using Lean.Touch;
 using Sirenix.OdinInspector;
 using System;
@@ -21,10 +22,11 @@ namespace Game.Runtime
         private Tween _rotationTween;
         private Vector3 _initialScale;
         private float _initialX;
+        private bool _isDisposed;
 
         private const float TARGET_ROTATION_Z = 140f;
         private const float OFFSET_Y = 0.02f;
-        private const float STARTING_POS_X = 3f;
+        private const float STARTING_POS_X = 1f;
 
         private void Awake()
         {
@@ -45,12 +47,16 @@ namespace Game.Runtime
         {
             LeanSelectable.OnSelectedFinger.AddListener(SelectTween);
             LeanSelectable.OnSelectedFingerUp.AddListener(DeselectTween);
+            GameStateManager.Instance.OnEnterWhippedCreamState.AddListener(InitialMovement);
+            GameStateManager.Instance.OnExitWhippedCreamState.AddListener(Dispose);
         }
 
         private void OnDisable()
         {
             LeanSelectable.OnSelectedFinger.RemoveListener(SelectTween);
             LeanSelectable.OnSelectedFingerUp.RemoveListener(DeselectTween);
+            GameStateManager.Instance.OnEnterWhippedCreamState.RemoveListener(InitialMovement);
+            GameStateManager.Instance.OnExitWhippedCreamState.RemoveListener(Dispose);
         }
 
         private void Update()
@@ -62,8 +68,7 @@ namespace Game.Runtime
         private void InitialMovement()
         {
             graphics.DOScale(_initialScale, 0.25f);
-            graphics.DOLocalMoveX(_initialX, 1f).OnComplete(OnMovementCompleted);
-            //TODO: comes from left to initial point.
+            graphics.DOLocalMoveX(_initialX, 1f).OnComplete(OnMovementCompleted).SetDelay(0.5f).SetDelay(0.5f);
 
             void OnMovementCompleted()
             {
@@ -76,7 +81,7 @@ namespace Game.Runtime
             if (!LeanSelectable.IsSelected)
                 return;
 
-            graphics.position = Vector3.Lerp(graphics.position, GetHeight(), 5 * Time.deltaTime);
+            graphics.position = Vector3.Lerp(graphics.position, GetHeight(), 7 * Time.deltaTime);
         }
 
         private Vector3 GetHeight()
@@ -96,9 +101,24 @@ namespace Game.Runtime
 
         private void DeselectTween(LeanFinger arg0)
         {
+            if (_isDisposed) 
+                return;
+
             _rotationTween?.Kill();
             _rotationTween = graphics.DOLocalRotate(_initialRotation, 0.25f);
             graphics.DOMoveY(_initialY, 0.25f);
+        }
+
+        private void Dispose()
+        {
+            _isDisposed = true;
+
+            graphics.DOLocalMoveX(STARTING_POS_X, 1f).OnComplete(OnMovementCompleted);
+
+            void OnMovementCompleted()
+            {
+                graphics.DOScale(Vector3.zero, 0.25f);
+            }
         }
     }
 }

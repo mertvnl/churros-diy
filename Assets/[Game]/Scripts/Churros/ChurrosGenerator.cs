@@ -87,7 +87,7 @@ namespace Game.Runtime
             if (IsMaxPointReached())
             {
                 CompleteGeneration();
-                //TODO: Automatically Finish Churros Generation State.
+                GameStateManager.Instance.CurrentStateMachine.EnterNextState();
             }
         }
 

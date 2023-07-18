@@ -17,6 +17,11 @@ namespace Game.Runtime
             CameraManager.Instance.ActivateCamera(CameraID.DrawingCamera, CAMERA_BLEND_DURATION);
             GameStateManager.Instance.OnEnterChurrosDrawingState.Invoke();
         }
+
+        public override void ExitState()
+        {
+            GameStateManager.Instance.OnExitChurrosDrawingState.Invoke();
+        }
     }
 }
 

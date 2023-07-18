@@ -1612,7 +1612,7 @@ MonoBehaviour:
     _maxOffset: {x: 0, y: 0}
     _randomScale: 0
     _uniformRandomScale: 0
-    _minScale: {x: 0.04, y: 0.04, z: 1}
+    _minScale: {x: 0.03, y: 0.03, z: 1}
     _maxScale: {x: 1, y: 1, z: 1}
     _overrideMaterialID: 0
     _targetMaterialID: 0

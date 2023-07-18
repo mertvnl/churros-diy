@@ -112,10 +112,7 @@ namespace Game.Runtime
 
             if (IsMaxPointReached())
             {
-                //TODO: Automatically Finish Cream Generation State.
-                LeanSelectable.Deselect();
-                LeanSelectable.OnSelectedFingerUp.Invoke(new LeanFinger());
-                LeanSelectable.enabled = false;
+                GameStateManager.Instance.CurrentStateMachine.EnterNextState();
             }
         }
 
