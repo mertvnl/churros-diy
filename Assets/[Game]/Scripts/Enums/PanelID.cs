@@ -7,7 +7,8 @@ namespace Game.Enums
     public enum PanelID
     {
         None = 0,
-        LevelStartPanel = 10
+        LevelStartPanel = 10,
+        WhippedCreamPanel = 20,
     }
 }
 
