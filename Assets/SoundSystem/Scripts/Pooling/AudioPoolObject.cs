@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Actors.PoolingSystem
 {
-    public class PoolObject : MonoBehaviour
+    public class AudioPoolObject : MonoBehaviour
     {
         public int PoolID { get; private set; }
 

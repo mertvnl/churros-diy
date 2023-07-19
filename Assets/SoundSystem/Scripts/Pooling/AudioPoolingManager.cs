@@ -72,7 +72,7 @@ namespace Game.Managers
 
         public void DestroyPoolObject(GameObject obj)
         {
-            if (!obj.TryGetComponent(out PoolObject poolObject))
+            if (!obj.TryGetComponent(out AudioPoolObject poolObject))
                 return;
 
             if (!PoolStacksByID.ContainsKey(poolObject.PoolID))
@@ -121,9 +121,9 @@ namespace Game.Managers
 
             GameObject poolObject = Instantiate(PoolsByID[poolID].Prefab);
 
-            if (!poolObject.TryGetComponent(out PoolObject _))
+            if (!poolObject.TryGetComponent(out AudioPoolObject _))
             {
-                poolObject.AddComponent<PoolObject>().Initialize(poolID);
+                poolObject.AddComponent<AudioPoolObject>().Initialize(poolID);
             }
 
             poolObject.transform.SetParent(transform);
