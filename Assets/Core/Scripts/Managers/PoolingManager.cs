@@ -3,157 +3,107 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Events;
+using Game.Enums;
+using Game.Runtime;
+using Game.Models;
 
-[Serializable]
-public class Pool
+namespace Game.Managers 
 {
-    public string Id;
-    public GameObject Prefab;
-    public int Size;
-    public bool AutoGrow = true;
-
-    [HideInInspector]
-    public List<GameObject> PooledObjects;
-}
-public class PoolingManager : Singleton<PoolingManager>
-{
-    [SerializeField] private Pool[] Pools;
-
-    [HideInInspector]
-    public UnityEvent OnPoolInitialised = new UnityEvent();
-
-    private void Awake()
+    public class PoolingManager : Singleton<PoolingManager>
     {
-        InitialisePools();
-    }
+        private Dictionary<PoolID, Stack<PoolObject>> _poolStacksByID = new Dictionary<PoolID, Stack<PoolObject>>();
+        public Dictionary<PoolID, Stack<PoolObject>> PoolStacksByID { get => _poolStacksByID; private set => _poolStacksByID = value; }
 
-    private void InitialisePools()
-    {
-        foreach (var pool in Pools)
+        private Dictionary<PoolID, Pool> _poolsByID = new Dictionary<PoolID, Pool>();
+        public Dictionary<PoolID, Pool> PoolsByID { get => _poolsByID; private set => _poolsByID = value; }
+
+        [SerializeField] private PoolDatabase poolDatabase;
+
+        private void Awake()
         {
-            for (int i = 0; i < pool.Size; i++)
+            SetPoolCollection();
+            SetInitialPoolStacks();
+        }
+
+        public PoolObject Instantiate(PoolID poolID, Vector3 position, Quaternion rotation)
+        {
+            if (!PoolStacksByID.ContainsKey(poolID))
             {
-                GameObject instance = Instantiate(pool.Prefab, transform);
-                pool.PooledObjects.Add(instance);
-                instance.SetActive(false);
+                Debug.LogError("Pool with ID " + poolID + " does not exist.");
+                return null;
+            }
+
+            PoolObject poolObject = PopPoolObject(poolID);
+            poolObject.transform.SetPositionAndRotation(position, rotation);
+            poolObject.gameObject.SetActive(true);
+            poolObject.Initialize();
+
+            return poolObject;
+        }
+
+        public void DestroyPoolObject(PoolObject poolObject)
+        {
+            if (!PoolStacksByID.ContainsKey(poolObject.PoolID))
+                return;
+
+            poolObject.gameObject.SetActive(false);
+            poolObject.transform.SetParent(transform);
+            poolObject.Dispose();
+
+            PoolStacksByID[poolObject.PoolID].Push(poolObject);
+        }
+
+        private PoolObject PopPoolObject(PoolID poolID)
+        {
+            int stackCount = PoolStacksByID[poolID].Count;
+            for (int i = 0; i < stackCount; i++)
+            {
+                PoolObject poolObject = PoolStacksByID[poolID].Pop();
+                if (poolObject != null)
+                    return poolObject;
+            }
+            return CreatePoolObject(poolID);
+        }
+
+        private PoolObject CreatePoolObject(PoolID poolID)
+        {
+            if (!PoolsByID.ContainsKey(poolID))
+                return null;
+
+            PoolObject poolObject = Instantiate(PoolsByID[poolID].Prefab).GetComponent<PoolObject>();
+            poolObject.transform.SetParent(transform);
+            poolObject.gameObject.SetActive(false);
+
+            return poolObject;
+        }
+
+        private void SetInitialPoolStacks()
+        {
+            foreach (Pool pool in poolDatabase.Pools)
+            {
+                if (PoolStacksByID.ContainsKey(pool.Prefab.PoolID))
+                    continue;
+
+                Stack<PoolObject> poolStack = new Stack<PoolObject>();
+                for (int i = 0; i < pool.InitialSize; i++)
+                {
+                    PoolObject poolObject = CreatePoolObject(pool.Prefab.PoolID);
+                    poolStack.Push(poolObject);
+                }
+
+                PoolStacksByID.Add(pool.Prefab.PoolID, poolStack);
             }
         }
 
-        OnPoolInitialised.Invoke();
-    }
-
-    public GameObject InstantiatePoolObject(string Id)
-    {
-        GameObject instance = GetPoolObjectById(Id);
-        instance.SetActive(true);
-        instance.transform.SetParent(null);
-
-        return instance;
-    }
-    public void DestroyPoolObject(GameObject go)
-    {
-        go.transform.SetParent(transform);
-        go.SetActive(false);
-    }
-
-    #region Instantiate Overloads
-    public GameObject InstantiatePoolObject(string Id, Transform parent)
-    {
-        GameObject instance = InstantiatePoolObject(Id);
-        instance.transform.SetParent(parent);
-
-        return instance;
-    }
-
-    public GameObject InstantiatePoolObject(string Id, Vector3 position)
-    {
-        GameObject instance = InstantiatePoolObject(Id);
-        instance.transform.position = position;
-
-        return instance;
-    }
-
-    public GameObject InstantiatePoolObject(string Id, Vector3 position, Quaternion rotation)
-    {
-        GameObject instance = InstantiatePoolObject(Id);
-        instance.transform.position = position;
-        instance.transform.rotation = rotation;
-
-        return instance;
-    }
-
-    public GameObject InstantiatePoolObject(string Id, Vector3 position, Quaternion rotation, Transform parent)
-    {
-        GameObject instance = InstantiatePoolObject(Id);
-        instance.transform.position = position;
-        instance.transform.rotation = rotation;
-        instance.transform.SetParent(parent);
-
-        return instance;
-    }
-    #endregion
-
-    #region Destroy Overloads
-    public void DestroyPoolObject(GameObject go, float delay)
-    {
-        StartCoroutine(DestroyPoolObjectCo(go, delay));
-    }
-
-    private IEnumerator DestroyPoolObjectCo(GameObject go, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        DestroyPoolObject(go);
-    }
-    #endregion
-
-    #region HelperMethods
-    private GameObject GetPoolObjectById(string Id)
-    {
-        Pool selectedPool = null;
-
-        foreach (var pool in Pools)
+        private void SetPoolCollection()
         {
-            if (pool.Id == Id)
+            foreach (var pool in poolDatabase.Pools)
             {
-                selectedPool = pool;
-                break;
+                if (!PoolsByID.ContainsKey(pool.Prefab.PoolID))
+                {
+                    PoolsByID.Add(pool.Prefab.PoolID, pool);
+                }
             }
         }
-
-        if (selectedPool == null)
-        {
-            Debug.LogWarning("There is no pool that has " + Id + "id. Please check if ID is correct.");
-        }
-
-        return GetInactivePoolObject(selectedPool);
     }
-
-    private GameObject GetInactivePoolObject(Pool pool)
-    {
-        GameObject go = null;
-
-        foreach (var poolObj in pool.PooledObjects)
-        {
-            if (!poolObj.activeSelf)
-            {
-                go = poolObj;
-                break;
-            }
-        }
-
-        if (go == null && pool.AutoGrow)
-        {
-            go = Instantiate(pool.Prefab, transform);
-            pool.PooledObjects.Add(go);
-            go.SetActive(false);
-        }
-
-        if (go == null)
-        {
-            Debug.LogWarning("There is no available object to spawn. Increase the size of pool or enable auto grow.");
-        }
-
-        return go;
-    }
-    #endregion
 }

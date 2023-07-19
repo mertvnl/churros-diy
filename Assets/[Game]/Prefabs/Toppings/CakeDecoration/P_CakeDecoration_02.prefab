@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4575569364061227143, guid: e52e357262a7a764b85801db6de55f46, type: 3}
+      propertyPath: poolID
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7156456959158675754, guid: e52e357262a7a764b85801db6de55f46, type: 3}
       propertyPath: m_Name
       value: P_CakeDecoration_02

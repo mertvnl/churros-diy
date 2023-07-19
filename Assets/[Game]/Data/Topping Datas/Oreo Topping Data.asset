@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Oreo
   Icon: {fileID: 21300000, guid: ad93907feb6723341aba3d0ab039959f, type: 3}
-  Prefabs:
-  - {fileID: 3557371571316582726, guid: 324d6410ea97f7c42828b5c60a1397e5, type: 3}
+  PoolIDs: 3c000000

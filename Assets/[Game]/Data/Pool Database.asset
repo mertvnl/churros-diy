@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a66e248a4c2fd4e8c432ea53e69cc1, type: 3}
+  m_Name: Pool Database
+  m_EditorClassIdentifier: 
+  Pools:
+  - Prefab: {fileID: 7886142905484839147, guid: 9b051441b907fea4baf2e0b20a0069e9, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: 7b60fccd9b98fee419ec2e96d6bcaf22, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: 14f1977879057ed47b0ae2f47de641d8, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: cb38d6595c823f14f994b08dbbffdf44, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: cff943f8db2f1e8408eec37cca432a02, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: afe47cad3167ffa4e900d5d4fe9671a3, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: f64dbbc7757223a4db69b68aba5e4752, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: 3a53138ab299cd34ba7226e29b0ad98f, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: 324d6410ea97f7c42828b5c60a1397e5, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: 49b1849c0277c36469189ff88c12d498, type: 3}
+    InitialSize: 25
+  - Prefab: {fileID: 7886142905484839147, guid: 4a566de6926c55b4293bcd971a02f7b6, type: 3}
+    InitialSize: 25

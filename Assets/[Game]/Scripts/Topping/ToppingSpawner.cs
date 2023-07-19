@@ -7,6 +7,7 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using Sirenix.OdinInspector;
 using UnityEngine.EventSystems;
+using Game.Enums;
 
 namespace Game.Runtime 
 {
@@ -72,9 +73,8 @@ namespace Game.Runtime
         {
             int spawnCount = Random.Range(MIN_SPAWN_COUNT, MAX_SPAWN_COUNT);
             for (int i = 0; i < spawnCount; i++)
-            {                       
-                Topping topping = Instantiate(GetToppingPrefab(), GetSpawnPosition(), GetSpawnRotation()).GetComponent<Topping>();
-                topping.Initialize();
+            {
+                PoolingManager.Instance.Instantiate(GetTopping(), GetSpawnPosition(), GetSpawnRotation());                
             }            
         }
 
@@ -92,11 +92,11 @@ namespace Game.Runtime
             return Quaternion.Euler(new Vector3(0f, randomRotation, 0f));
         }
 
-        private GameObject GetToppingPrefab() 
+        private PoolID GetTopping() 
         {
-            List<GameObject> prefabs = new(ToppingManager.Instance.CurrentToppingData.Prefabs);
-            prefabs.Shuffle();
-            return prefabs[0];
+            List<PoolID> poolIDs = new(ToppingManager.Instance.CurrentToppingData.PoolIDs);
+            poolIDs.Shuffle();
+            return poolIDs[0];
         }
     }
 }

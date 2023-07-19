@@ -1,3 +1,4 @@
+using Game.Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Game.Models
     {
         public string Name;
         public Sprite Icon;
-        public List<GameObject> Prefabs;
+        public List<PoolID> PoolIDs = new();
     }
 }
 

@@ -14,7 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Dragee
   Icon: {fileID: 21300000, guid: 8fcf6d3aa2059a249905037cc3b4ccd2, type: 3}
-  Prefabs:
-  - {fileID: 3557371571316582726, guid: afe47cad3167ffa4e900d5d4fe9671a3, type: 3}
-  - {fileID: 3557371571316582726, guid: f64dbbc7757223a4db69b68aba5e4752, type: 3}
-  - {fileID: 3557371571316582726, guid: 3a53138ab299cd34ba7226e29b0ad98f, type: 3}
+  PoolIDs: 46000000500000005a000000
