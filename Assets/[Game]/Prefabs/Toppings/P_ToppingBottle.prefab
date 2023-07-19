@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3671955716133940233}
   - component: {fileID: -2760684620917066441}
-  - component: {fileID: -6496734809936954654}
   - component: {fileID: 170371496039697251}
   - component: {fileID: 1154289641461117101}
   - component: {fileID: 6081721818312314275}
   - component: {fileID: 3974733250538851536}
+  - component: {fileID: 6405116776175550855}
   m_Layer: 10
   m_Name: P_ToppingBottle
   m_TagString: Untagged
@@ -67,19 +67,6 @@ MonoBehaviour:
       m_Bits: 4294967291
     Distance: 0
   damping: -1
---- !u!114 &-6496734809936954654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451865510309340919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7c9ed5ab49e6a4db2ce852d85bb0e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projector: {fileID: 0}
 --- !u!114 &170371496039697251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +119,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7c9ed5ab49e6a4db2ce852d85bb0e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projector: {fileID: 0}
+--- !u!114 &6405116776175550855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451865510309340919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6863cddef246ac349b0af58dbb066352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bottleRenderer: {fileID: 8997493570475637615}
 --- !u!1 &4050933240606435386
 GameObject:
   m_ObjectHideFlags: 0

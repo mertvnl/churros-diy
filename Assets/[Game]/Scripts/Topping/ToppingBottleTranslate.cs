@@ -13,8 +13,6 @@ namespace Game.Runtime
         private LeanDragTranslateAlong _leanTranslate;
         private LeanDragTranslateAlong LeanTranslate => _leanTranslate == null ? _leanTranslate = GetComponent<LeanDragTranslateAlong>() : _leanTranslate;
 
-        [SerializeField] private GameObject projector;
-
         private void Awake()
         {
             DeactivateTranslate();

@@ -45,10 +45,12 @@ namespace Game.Runtime
             DefaultPosition = body.localPosition;
             OffsetPosition = DefaultPosition + MOVEMENT_OFFSET * Vector3.up;
             body.localPosition = OffsetPosition;
+            SetBody(false);
         }
 
         private void ActivateTopping()
         {
+            SetBody(true);
             MoveTween(DefaultPosition, () =>
             {
                 IsActive = true;
@@ -59,14 +61,22 @@ namespace Game.Runtime
         private void DisableTopping() 
         {
             IsActive = false;
-            MoveTween(OffsetPosition);
             OnDisabled.Invoke();
+            MoveTween(OffsetPosition, () => 
+            {
+                SetBody(false);
+            });            
         }
 
         private void MoveTween(Vector3 endValue, Action onComplete = null) 
         {
             _movementTween?.Kill();
             _movementTween = body.DOLocalMove(endValue, MOVEMENT_DURATION).SetEase(Ease.Linear).OnComplete(() => onComplete?.Invoke());
+        }
+
+        private void SetBody(bool isEnabled) 
+        {
+            body.gameObject.SetActive(isEnabled);
         }
     }
 }
