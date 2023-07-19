@@ -71,10 +71,8 @@ namespace Game.Runtime
         {
             int spawnCount = Random.Range(MIN_SPAWN_COUNT, MAX_SPAWN_COUNT);
             for (int i = 0; i < spawnCount; i++)
-            {
-                GameObject prefab = GetToppingPrefab();
-                Vector3 spawnPosition = GetSpawnPosition();
-                Topping topping = Instantiate(prefab, spawnPosition, Quaternion.identity).GetComponent<Topping>();
+            {                       
+                Topping topping = Instantiate(GetToppingPrefab(), GetSpawnPosition(), GetSpawnRotation()).GetComponent<Topping>();
                 topping.Initialize();
             }            
         }
@@ -85,6 +83,12 @@ namespace Game.Runtime
             Vector2 unitCircle = Random.insideUnitCircle * radius;
             Vector3 spawnPosition = body.position + new Vector3(unitCircle.x, 0f, unitCircle.y);
             return spawnPosition;
+        }
+
+        private Quaternion GetSpawnRotation() 
+        {
+            float randomRotation = Random.Range(0f, 360f);
+            return Quaternion.Euler(new Vector3(0f, randomRotation, 0f));
         }
 
         private GameObject GetToppingPrefab() 
