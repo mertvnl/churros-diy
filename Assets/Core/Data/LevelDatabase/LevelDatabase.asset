@@ -15,3 +15,5 @@ MonoBehaviour:
   levels:
   - levelId: Level-Customer
     levelType: 0
+  - levelId: Level-Customer
+    levelType: 0

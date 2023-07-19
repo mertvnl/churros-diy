@@ -8,5 +8,7 @@ namespace Game.Models
     public class CreamData : ScriptableObject
     {
         [field: SerializeField] public Color Color { get; private set; }
+        [field: SerializeField] public Sprite UISprite { get; private set; }
+        [field: SerializeField] public Texture2D Texture { get; private set; }
     }
 }

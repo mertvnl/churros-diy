@@ -15,9 +15,7 @@ MonoBehaviour:
   <Creams>k__BackingField:
   - {fileID: 11400000, guid: 68ef5db0d4b3cd749bea9a15c3c765a6, type: 2}
   - {fileID: 11400000, guid: 7998070be656b964f925d5292a06cde5, type: 2}
-  - {fileID: 11400000, guid: 97132c0fa0aecf840bfe1232365eee89, type: 2}
   - {fileID: 11400000, guid: cd708985b5ffe764ea30c90fca787de8, type: 2}
-  - {fileID: 11400000, guid: 565ae9aee39ac754f985d89203debde4, type: 2}
   - {fileID: 11400000, guid: c500a6dc7e3bf2741b86a79ab4dd1984, type: 2}
   - {fileID: 11400000, guid: 5e102bc2f1fa8c840beac229998309ab, type: 2}
   <DefaultCreamData>k__BackingField: {fileID: 11400000, guid: 5e102bc2f1fa8c840beac229998309ab, type: 2}

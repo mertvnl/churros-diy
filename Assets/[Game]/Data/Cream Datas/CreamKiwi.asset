@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a6efedd478bc0c4ea884231ed9b365a, type: 3}
-  m_Name: CreamOrange
+  m_Name: CreamKiwi
   m_EditorClassIdentifier: 
-  <Color>k__BackingField: {r: 1, g: 0.65179634, b: 0, a: 1}
+  <Color>k__BackingField: {r: 0.6633299, g: 1, b: 0.4481132, a: 1}
+  <UISprite>k__BackingField: {fileID: 21300000, guid: e383f79135da8674abdedb9139f5460b, type: 3}
+  <Texture>k__BackingField: {fileID: 2800000, guid: 0c1fcecfd4d416b489c8b25bfb7a7650, type: 3}

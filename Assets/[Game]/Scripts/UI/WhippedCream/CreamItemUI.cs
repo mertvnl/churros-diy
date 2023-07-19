@@ -39,7 +39,7 @@ namespace Game.Runtime
             if (_data == null) 
                 return;
 
-            creamCanImage.color = _data.Color;
+            creamCanImage.sprite = _data.UISprite;
         }
 
         public void ToggleItem(bool status)
