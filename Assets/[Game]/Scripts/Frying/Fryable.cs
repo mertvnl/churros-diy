@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Game.Interfaces;
+using Game.Managers;
 using Game.Models;
 using Game.Props;
 using UnityEngine;
@@ -18,10 +19,16 @@ namespace Game.Runtime
         private Tween _fryingTween;
 
         [Sirenix.OdinInspector.Button]
-        public void Fry()
+        public void StartFrying()
         {
             fryingParticle.Play();
+            SoundManager.Instance.PlayContinuousSound(AudioID.Frying);
 
+            Fry();
+        }
+
+        public void Fry()
+        {
             if (FryingData.IsFryingStarted)
             {
                 _fryingTween.Play();
@@ -40,6 +47,8 @@ namespace Game.Runtime
         {
             _fryingTween.Pause();
             fryingParticle.Stop();
+            SoundManager.Instance.StopContinuousSound(AudioID.Frying);
+
         }
     }
 }

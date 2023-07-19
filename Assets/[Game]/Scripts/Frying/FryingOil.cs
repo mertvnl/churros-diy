@@ -13,7 +13,7 @@ namespace Game.Props
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<IFryable>(out _curFryable))
-                _curFryable.Fry();
+                _curFryable.StartFrying();
         }
 
         private void OnTriggerExit(Collider other)
