@@ -10,6 +10,10 @@ namespace Game.Models
     {
         public string Name;
         public Sprite Icon;
+        [Space]
+        public Color BottleTipColor;
+        public Texture BottleBodyTexture;
+        [Space]
         public List<PoolID> PoolIDs = new();
     }
 }

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Cake Decoration
   Icon: {fileID: 21300000, guid: 040da62eee4b8b546aa1e651348a7978, type: 3}
+  BottleTipColor: {r: 1, g: 0.3254717, b: 0.81191033, a: 1}
+  BottleBodyTexture: {fileID: 2800000, guid: 8eb3784fa9f5a3e45be002a17a257cda, type: 3}
   PoolIDs: 0a000000140000001e000000

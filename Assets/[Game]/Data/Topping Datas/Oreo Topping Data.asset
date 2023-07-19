@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Oreo
   Icon: {fileID: 21300000, guid: ad93907feb6723341aba3d0ab039959f, type: 3}
+  BottleTipColor: {r: 0.14901961, g: 0.18823531, b: 0.23529413, a: 1}
+  BottleBodyTexture: {fileID: 2800000, guid: 895597fc6f5975b46bf9562ff2d540bf, type: 3}
   PoolIDs: 3c000000

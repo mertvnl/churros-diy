@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Strawberry
   Icon: {fileID: 21300000, guid: d43a8408f36864846956ce7d0f49618b, type: 3}
+  BottleTipColor: {r: 0.81568635, g: 0.3372549, b: 0.28627452, a: 1}
+  BottleBodyTexture: {fileID: 2800000, guid: 01e9d87e931e1ee4889511f1ba105f89, type: 3}
   PoolIDs: 640000006e000000
