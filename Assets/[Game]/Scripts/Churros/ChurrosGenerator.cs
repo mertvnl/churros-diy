@@ -89,6 +89,8 @@ namespace Game.Runtime
                 CompleteGeneration();
                 GameStateManager.Instance.CurrentStateMachine.EnterNextState();
             }
+
+            HapticManager.PlayHaptic(Lofelt.NiceVibrations.HapticPatterns.PresetType.SoftImpact);
         }
 
         private void SetMeshCount()
