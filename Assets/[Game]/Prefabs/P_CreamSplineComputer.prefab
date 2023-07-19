@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8770647010925182050
 MonoBehaviour:
@@ -1612,7 +1612,7 @@ MonoBehaviour:
     _maxOffset: {x: 0, y: 0}
     _randomScale: 0
     _uniformRandomScale: 0
-    _minScale: {x: 0.03, y: 0.03, z: 1}
+    _minScale: {x: 0.02, y: 0.02, z: 1}
     _maxScale: {x: 1, y: 1, z: 1}
     _overrideMaterialID: 0
     _targetMaterialID: 0
