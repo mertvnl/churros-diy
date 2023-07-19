@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class SplashPanel : EasyPanel
 {
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         LevelManager.Instance.OnLevelLoaded.AddListener(OnLevelLoaded);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         LevelManager.Instance.OnLevelLoaded.RemoveListener(OnLevelLoaded);
     }
 

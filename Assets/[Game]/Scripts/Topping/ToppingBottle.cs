@@ -16,7 +16,9 @@ namespace Game.Runtime
         public UnityEvent OnActivated { get; private set; } = new();
         public UnityEvent OnDisabled { get; private set; } = new();
 
-        private const float MOVEMENT_OFFSET = 3f;
+        [SerializeField] private Transform body;
+
+        private const float MOVEMENT_OFFSET = 0.5f;
         private const float MOVEMENT_DURATION = 0.5f;       
         
         private Tween _movementTween;
@@ -40,9 +42,9 @@ namespace Game.Runtime
 
         private void Initialize()
         {
-            DefaultPosition = transform.localPosition;
+            DefaultPosition = body.localPosition;
             OffsetPosition = DefaultPosition + MOVEMENT_OFFSET * Vector3.up;
-            transform.localPosition = OffsetPosition;
+            body.localPosition = OffsetPosition;
         }
 
         private void ActivateTopping()
@@ -64,7 +66,7 @@ namespace Game.Runtime
         private void MoveTween(Vector3 endValue, Action onComplete = null) 
         {
             _movementTween?.Kill();
-            _movementTween = transform.DOMove(endValue, MOVEMENT_DURATION).SetEase(Ease.Linear).OnComplete(() => onComplete?.Invoke());
+            _movementTween = body.DOLocalMove(endValue, MOVEMENT_DURATION).SetEase(Ease.Linear).OnComplete(() => onComplete?.Invoke());
         }
     }
 }

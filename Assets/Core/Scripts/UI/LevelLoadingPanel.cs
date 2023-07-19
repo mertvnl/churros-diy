@@ -14,14 +14,16 @@ public class LevelLoadingPanel : EasyPanel
         ShowPanel();
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         LevelManager.Instance.OnLevelLoadingStarted.AddListener(FirstPhaseAnimation);
         LevelManager.Instance.OnLevelLoaded.AddListener(SecondPhaseAnimation);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         LevelManager.Instance.OnLevelLoadingStarted.RemoveListener(FirstPhaseAnimation);
         LevelManager.Instance.OnLevelLoaded.RemoveListener(SecondPhaseAnimation);
     }

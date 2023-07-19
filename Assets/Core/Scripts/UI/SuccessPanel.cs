@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class SuccessPanel : EasyPanel
 {
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         GameManager.Instance.OnLevelCompleted.AddListener(TogglePanel);
         LevelManager.Instance.OnLevelLoaded.AddListener(HidePanel);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         GameManager.Instance.OnLevelCompleted.RemoveListener(TogglePanel);
         LevelManager.Instance.OnLevelLoaded.RemoveListener(HidePanel);
     }

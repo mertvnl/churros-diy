@@ -20,14 +20,16 @@ namespace Game.Runtime
         private List<CreamItemUI> _creamItems = new();
         private CreamItemUI _defaultCreamItem;
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             GameStateManager.Instance.OnEnterWhippedCreamState.AddListener(ShowPanelAnimated);
             GameStateManager.Instance.OnExitWhippedCreamState.AddListener(HidePanelAnimated);
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
             GameStateManager.Instance.OnEnterWhippedCreamState.RemoveListener(ShowPanelAnimated);
             GameStateManager.Instance.OnExitWhippedCreamState.RemoveListener(HidePanelAnimated);
         }

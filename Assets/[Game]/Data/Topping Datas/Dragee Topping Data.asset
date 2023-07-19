@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0684d1f4cdb68a441887ace79f452207, type: 3}
   m_Name: Dragee Topping Data
   m_EditorClassIdentifier: 
-  Name: Chocolate Chips
-  Icon: {fileID: 21300000, guid: 47dd36b6fcfc46142bed5ff745ac5f56, type: 3}
+  Name: Dragee
+  Icon: {fileID: 21300000, guid: 4a0e153c79533d149a11cef2bee22159, type: 3}
   Prefabs:
   - {fileID: 3557371571316582726, guid: afe47cad3167ffa4e900d5d4fe9671a3, type: 3}
   - {fileID: 3557371571316582726, guid: f64dbbc7757223a4db69b68aba5e4752, type: 3}

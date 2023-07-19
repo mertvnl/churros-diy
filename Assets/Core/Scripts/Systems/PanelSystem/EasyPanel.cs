@@ -6,6 +6,7 @@ using DG.Tweening;
 using System;
 using Game.Enums;
 using Game.Interfaces;
+using Game.Managers;
 
 public enum PanelAnimationTypes
 {
@@ -24,6 +25,16 @@ public class EasyPanel : MonoBehaviour, IPanel
     [field : SerializeField] public PanelID PanelID { get; private set; }
 
     [SerializeField] private PanelAnimationTypes panelAnimationTypes;
+
+    protected virtual void OnEnable() 
+    {
+        UIManager.Instance.AddPanel(this);
+    }
+
+    protected virtual void OnDisable() 
+    {
+        UIManager.Instance.RemovePanel(this);
+    }
 
     [Button]
     public virtual void ShowPanel()
