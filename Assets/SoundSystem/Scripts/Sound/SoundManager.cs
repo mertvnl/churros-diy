@@ -175,6 +175,9 @@ namespace Game.Managers
         [Button("Test Continuous Sound")]
         public void PlayContinuousSound(AudioID audioId)
         {
+            if (!IsSoundActive)
+                return;
+
             if (_audioSources.ContainsKey(audioId))
                 return;
 
