@@ -6,6 +6,7 @@ using Game.Utilities;
 using DG.Tweening;
 using DG.Tweening.Core;
 using Sirenix.OdinInspector;
+using UnityEngine.EventSystems;
 
 namespace Game.Runtime 
 {
@@ -43,7 +44,7 @@ namespace Game.Runtime
             if (!ToppingBottle.IsActive)
                 return;
 
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 StartSpawn();
             }
