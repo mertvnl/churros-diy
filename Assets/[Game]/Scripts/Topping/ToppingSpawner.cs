@@ -74,7 +74,7 @@ namespace Game.Runtime
             {
                 GameObject prefab = GetToppingPrefab();
                 Vector3 spawnPosition = GetSpawnPosition();
-                Topping topping = Instantiate(prefab, spawnPosition, Random.rotation).GetComponent<Topping>();
+                Topping topping = Instantiate(prefab, spawnPosition, Quaternion.identity).GetComponent<Topping>();
                 topping.Initialize();
             }            
         }
