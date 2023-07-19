@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class InGamePanel : EasyPanel
 {
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         LevelManager.Instance.OnLevelStarted.AddListener(ShowPanelAnimated);
         LevelManager.Instance.OnLevelLoaded.AddListener(HidePanel);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         LevelManager.Instance.OnLevelStarted.RemoveListener(ShowPanelAnimated);
         LevelManager.Instance.OnLevelLoaded.RemoveListener(HidePanel);
     }

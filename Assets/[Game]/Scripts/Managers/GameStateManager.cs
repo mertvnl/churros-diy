@@ -19,6 +19,7 @@ namespace Game.Managers
         public UnityEvent OnExitWhippedCreamState { get; private set; } = new();
         public UnityEvent OnEnterSyrupState { get; private set; } = new();
         public UnityEvent OnEnterToppingState{ get; private set; } = new();
+        public UnityEvent OnExitToppingState { get; private set; } = new();
         public UnityEvent OnAllStatesCompleted { get; private set; } = new();
 
         public void SetCurrentStateMachine(GameStateMachine stateMachine) 

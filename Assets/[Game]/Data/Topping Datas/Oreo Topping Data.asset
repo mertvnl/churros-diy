@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0684d1f4cdb68a441887ace79f452207, type: 3}
+  m_Name: Oreo Topping Data
+  m_EditorClassIdentifier: 
+  Name: Oreo
+  Icon: {fileID: 21300000, guid: ad93907feb6723341aba3d0ab039959f, type: 3}
+  BottleTipColor: {r: 0.14901961, g: 0.18823531, b: 0.23529413, a: 1}
+  BottleBodyTexture: {fileID: 2800000, guid: 895597fc6f5975b46bf9562ff2d540bf, type: 3}
+  PoolIDs: 3c000000

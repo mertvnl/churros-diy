@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class LevelStartPanel : EasyPanel
 {
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         LevelManager.Instance.OnLevelStarted.AddListener(HidePanelAnimated);
         GameStateManager.Instance.OnEnterCustomerOrderState.AddListener(ShowPanelAnimated);        
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         LevelManager.Instance.OnLevelStarted.RemoveListener(HidePanelAnimated);
         GameStateManager.Instance.OnEnterCustomerOrderState.RemoveListener(ShowPanelAnimated);        
     }
