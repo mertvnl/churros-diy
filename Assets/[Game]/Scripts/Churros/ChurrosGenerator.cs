@@ -13,8 +13,8 @@ namespace Game.Runtime
         private SplineComputer _splineComputer;
         public SplineComputer SplineComputer => _splineComputer == null ? _splineComputer = ChurrosManager.Instance.CurrentChurros.SplineComputer : _splineComputer;
 
-        private LeanSelectableByFinger _leanSelectable;
-        private LeanSelectableByFinger LeanSelectable => _leanSelectable == null ? _leanSelectable = GetComponent<LeanSelectableByFinger>() : _leanSelectable;
+        private PastryBag _pastryBag;
+        private PastryBag PastryBag => _pastryBag == null ? _pastryBag = GetComponent<PastryBag>() : _pastryBag;
 
         [SerializeField] private LayerMask spawnableLayer;
         [SerializeField] private Transform raycastPoint;
@@ -109,7 +109,7 @@ namespace Game.Runtime
             if (!_isAvailable)
                 return false;
 
-            if (!LeanSelectable.IsSelected)
+            if (!PastryBag.IsControlable)
                 return false;
 
             if (IsMaxPointReached())

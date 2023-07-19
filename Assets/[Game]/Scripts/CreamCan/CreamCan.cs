@@ -6,13 +6,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace Game.Runtime
 {
     public class CreamCan : MonoBehaviour
     {
-        private LeanSelectableByFinger _leanSelectable;
-        private LeanSelectableByFinger LeanSelectable => _leanSelectable == null ? _leanSelectable = GetComponent<LeanSelectableByFinger>() : _leanSelectable;
+        private LeanDragTranslateAlong _leanMover;
+        private LeanDragTranslateAlong LeanMover => _leanMover == null ? _leanMover = GetComponent<LeanDragTranslateAlong>() : _leanMover;
+
+        public bool IsControlable {  get; private set; }
+
+        public UnityEvent OnInputStart { get; private set; } = new();
+        public UnityEvent OnInputStop { get; private set; } = new();
 
         [SerializeField] private Transform graphics;
         [SerializeField] private LayerMask ignoreLayer;
@@ -25,6 +32,7 @@ namespace Game.Runtime
         private Vector3 _initialScale;
         private float _initialX;
         private bool _isDispoed;
+        private bool _canUpdateHeight;
 
         private const float TARGET_ROTATION_Z = 140f;
         private const float OFFSET_Y = 0.02f;
@@ -37,6 +45,8 @@ namespace Game.Runtime
 
         private void Initialize()
         {
+            IsControlable = false;
+            LeanMover.enabled = false;
             _initialRotation = graphics.localEulerAngles;
             _initialY = graphics.position.y;
             _initialScale = graphics.localScale;
@@ -47,16 +57,12 @@ namespace Game.Runtime
 
         private void OnEnable()
         {
-            LeanSelectable.OnSelectedFinger.AddListener(SelectTween);
-            LeanSelectable.OnSelectedFingerUp.AddListener(DeselectTween);
             GameStateManager.Instance.OnEnterWhippedCreamState.AddListener(InitialMovement);
             GameStateManager.Instance.OnExitWhippedCreamState.AddListener(Dispose);
         }
 
         private void OnDisable()
         {
-            LeanSelectable.OnSelectedFinger.RemoveListener(SelectTween);
-            LeanSelectable.OnSelectedFingerUp.RemoveListener(DeselectTween);
             GameStateManager.Instance.OnEnterWhippedCreamState.RemoveListener(InitialMovement);
             GameStateManager.Instance.OnExitWhippedCreamState.RemoveListener(Dispose);
         }
@@ -64,6 +70,25 @@ namespace Game.Runtime
         private void Update()
         {
             UpdateHeight();
+            CheckInput();
+        }
+
+        private void CheckInput()
+        {
+            if (!IsControlable) return;
+
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            {
+                OnInputStart.Invoke();
+                SelectTween();
+                _canUpdateHeight = true;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                OnInputStop.Invoke();
+                DeselectTween();
+                _canUpdateHeight = false;
+            }
         }
 
         [Button]
@@ -74,14 +99,18 @@ namespace Game.Runtime
 
             void OnMovementCompleted()
             {
+                LeanMover.enabled = true;
+                IsControlable = true;
                 indicator.SetActive(true);
-                LeanSelectable.enabled = true;
             }
         }
 
         private void UpdateHeight()
         {
-            if (!LeanSelectable.IsSelected)
+            if (!IsControlable)
+                return;
+
+            if (!_canUpdateHeight)
                 return;
 
             graphics.position = Vector3.Lerp(graphics.position, GetHeight(), 7 * Time.deltaTime);
@@ -95,7 +124,7 @@ namespace Game.Runtime
             return Vector3.zero;
         }
 
-        private void SelectTween(LeanFinger arg0)
+        private void SelectTween()
         {
             if (_isDispoed)
                 return;
@@ -105,7 +134,7 @@ namespace Game.Runtime
             _rotationTween = graphics.DOLocalRotate(targetRotation, 0.6f);
         }
 
-        private void DeselectTween(LeanFinger arg0)
+        private void DeselectTween()
         {
             if (_isDispoed)
                 return;
@@ -117,6 +146,9 @@ namespace Game.Runtime
 
         private void Dispose()
         {
+            IsControlable = false;
+            _canUpdateHeight = false;
+            LeanMover.enabled = false;
             _isDispoed = true;
             indicator.SetActive(false);
             _deselectTween?.Kill();

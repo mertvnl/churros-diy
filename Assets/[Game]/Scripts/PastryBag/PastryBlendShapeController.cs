@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Game.Runtime;
 using Lean.Touch;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,8 +7,8 @@ using UnityEngine;
 
 public class PastryBlendShapeController : MonoBehaviour
 {
-    private LeanSelectableByFinger _leanSelectable;
-    private LeanSelectableByFinger LeanSelectable => _leanSelectable == null ? _leanSelectable = GetComponent<LeanSelectableByFinger>() : _leanSelectable;
+    private PastryBag _pastryBag;
+    private PastryBag PastryBag => _pastryBag == null ? _pastryBag = GetComponent<PastryBag>() : _pastryBag;
 
     [SerializeField] private SkinnedMeshRenderer pastryMesh;
 
@@ -23,22 +24,22 @@ public class PastryBlendShapeController : MonoBehaviour
 
     private void OnEnable()
     {
-        LeanSelectable.OnSelectedFinger.AddListener(Squeeze);
-        LeanSelectable.OnSelectedFingerUp.AddListener(Release);
+        PastryBag.OnInputStart.AddListener(Squeeze);
+        PastryBag.OnInputStop.AddListener(Release);
     }
 
     private void OnDisable()
     {
-        LeanSelectable.OnSelectedFinger.RemoveListener(Squeeze);
-        LeanSelectable.OnSelectedFingerUp.RemoveListener(Release);
+        PastryBag.OnInputStart.RemoveListener(Squeeze);
+        PastryBag.OnInputStop.RemoveListener(Release);
     }
 
-    public void Squeeze(LeanFinger arg)
+    public void Squeeze()
     {
         UpdateBlendShape(BLENDSHAPE_MAX_WEIGHT);
     }
 
-    public void Release(LeanFinger arg)
+    public void Release()
     {
         UpdateBlendShape(BLENDSHAPE_MIN_WEIGHT);
     }

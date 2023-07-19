@@ -5,6 +5,8 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace Game.Runtime
 {
@@ -16,8 +18,9 @@ namespace Game.Runtime
         private LeanDragTranslateAlong _leanMover;
         private LeanDragTranslateAlong LeanMover => _leanMover == null ? _leanMover = GetComponent<LeanDragTranslateAlong>() : _leanMover;
 
-        private LeanSelectableByFinger _leanSelectable;
-        private LeanSelectableByFinger LeanSelectable => _leanSelectable == null ? _leanSelectable = GetComponent<LeanSelectableByFinger>() : _leanSelectable;
+        public bool IsControlable { get; private set; }
+        public UnityEvent OnInputStart { get; private set; } = new();
+        public UnityEvent OnInputStop { get; private set; } = new();
 
         [SerializeField] private Transform graphics;
         [SerializeField] private GameObject indicator;
@@ -44,9 +47,28 @@ namespace Game.Runtime
             Initialize();
         }
 
+        private void Update()
+        {
+            CheckInput();
+        }
+
+        private void CheckInput()
+        {
+            if (!IsControlable) return;
+
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            {
+                OnInputStart.Invoke();
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                OnInputStop.Invoke();
+            }
+        }
+
         private void Initialize()
         {
-            LeanSelectable.enabled = false;
+            IsControlable = false;
             LeanMover.enabled = false;
             ChurrosGenerator.SetActivation(false);
             _initialScale = graphics.localScale;
@@ -63,7 +85,7 @@ namespace Game.Runtime
 
             void OnMovementCompleted()
             {
-                LeanSelectable.enabled = true;
+                IsControlable = true;
                 LeanMover.enabled = true;
                 ChurrosGenerator.SetActivation(true);
                 indicator.SetActive(true);
@@ -72,7 +94,8 @@ namespace Game.Runtime
 
         private void Dispose()
         {
-            DisableLeanSelectable();
+            IsControlable = false;
+            LeanMover.enabled = false;
             graphics.DOLocalMoveX(-STARTING_POS_X, 1f).OnComplete(OnMovementCompleted);
             indicator.SetActive(false);
 
@@ -80,12 +103,6 @@ namespace Game.Runtime
             {
                 graphics.DOScale(Vector3.zero, 0.25f);
             }
-        }
-
-        private void DisableLeanSelectable()
-        {
-            LeanSelectable.Deselect();
-            LeanSelectable.enabled = false;
         }
     }
 }

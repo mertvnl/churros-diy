@@ -11,9 +11,9 @@ namespace Game.Runtime
 {
     public class CreamGenerator : MonoBehaviour
     {
-        private LeanSelectableByFinger _leanSelectable;
-        private LeanSelectableByFinger LeanSelectable => _leanSelectable == null ? _leanSelectable = GetComponent<LeanSelectableByFinger>() : _leanSelectable;
-        
+        private CreamCan _creamCan;
+        private CreamCan CreamCan => _creamCan == null ? _creamCan = GetComponent<CreamCan>() : _creamCan;
+
         public bool IsFirstPoint => _currentPointCount == 0;
 
         [Header("References")]
@@ -40,13 +40,13 @@ namespace Game.Runtime
 
         private void OnEnable()
         {
-            LeanSelectable.OnSelectedFinger.AddListener(CreateCreamSpline);
+            CreamCan.OnInputStart.AddListener(CreateCreamSpline);
             EventManager.OnCreamItemSelected.AddListener(UpdateMeshColor);
         }
 
         private void OnDisable()
         {
-            LeanSelectable.OnSelectedFinger.RemoveListener(CreateCreamSpline);
+            CreamCan.OnInputStart.RemoveListener(CreateCreamSpline);
             EventManager.OnCreamItemSelected.RemoveListener(UpdateMeshColor);
         }
 
@@ -55,7 +55,7 @@ namespace Game.Runtime
             _targetMeshColor = data.Color;
         }
 
-        private void CreateCreamSpline(LeanFinger arg0)
+        private void CreateCreamSpline()
         {
             _currentSpline = Instantiate(creamSplinePrefab, ChurrosManager.Instance.CurrentChurros.transform);
             _currentSplineMesh = _currentSpline.GetComponent<SplineMesh>();
@@ -72,7 +72,7 @@ namespace Game.Runtime
 
         private void CheckHeight()
         {
-            if (!LeanSelectable.IsSelected)
+            if (!CreamCan.IsControlable)
                 return;
 
             if (Physics.Raycast(raycastPoint.position + (Vector3.up * 0.2f), Vector3.down, out RaycastHit hit, creamDistanceThreshold, churrosLayer))
@@ -94,7 +94,7 @@ namespace Game.Runtime
             else
             {
                 if (_isCreamingInProgress)
-                    CreateCreamSpline(null);
+                    CreateCreamSpline();
             }
         }
 
@@ -120,7 +120,7 @@ namespace Game.Runtime
 
         private bool CanSpawnPoint()
         {
-            if (!LeanSelectable.IsSelected)
+            if (!CreamCan.IsControlable)
                 return false;
 
             if (IsMaxPointReached())
