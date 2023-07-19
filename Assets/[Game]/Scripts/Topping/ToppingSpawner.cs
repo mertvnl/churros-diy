@@ -18,6 +18,8 @@ namespace Game.Runtime
 
         private float DefaultHeight => ToppingBottle.DefaultPosition.y;
 
+        private const float SPAWN_RADIUS = 0.025f;
+        private const float SPAWN_OFFSET = 0.01f;
         private const int MIN_SPAWN_COUNT = 3;
         private const int MAX_SPAWN_COUNT = 6;
 
@@ -25,8 +27,7 @@ namespace Game.Runtime
         private const float MOVEMENT_DURATION = 0.15f;
         private const Ease MOVEMENT_EASE = Ease.Linear;
 
-        [SerializeField] private Transform body;
-        [SerializeField] private MeshRenderer visual;
+        [SerializeField] private Transform body;        
         
         private Sequence _spawnSequence;        
 
@@ -59,14 +60,18 @@ namespace Game.Runtime
         {
             _spawnSequence?.Kill();
             _spawnSequence = DOTween.Sequence();
-            _spawnSequence.Append(body.DOLocalMoveY(DefaultHeight + HEIGHT_OFFSET, MOVEMENT_DURATION).SetEase(MOVEMENT_EASE).OnComplete(() => SpawnTopping()))
-            .Append(body.DOLocalMoveY(DefaultHeight, MOVEMENT_DURATION * 0.8f).SetEase(MOVEMENT_EASE))
+
+            _spawnSequence.Append(body.DOLocalMoveY(DefaultHeight + HEIGHT_OFFSET, MOVEMENT_DURATION).SetEase(MOVEMENT_EASE))
+            .Append(body.DOLocalMoveY(DefaultHeight, MOVEMENT_DURATION * 0.8f).SetEase(MOVEMENT_EASE).OnComplete(() => SpawnTopping()))
             .SetLoops(-1, LoopType.Restart);
         }
 
         private void StopSpawn() 
         {
-            _spawnSequence?.Kill();            
+            _spawnSequence?.Kill();
+            Vector3 stopPosition = body.localPosition;
+            stopPosition.y = DefaultHeight;
+            body.localPosition = stopPosition;
         }
 
         private void SpawnTopping() 
@@ -79,10 +84,9 @@ namespace Game.Runtime
         }
 
         private Vector3 GetSpawnPosition() 
-        {
-            float radius = visual.bounds.size.x / 2f;
-            Vector2 unitCircle = Random.insideUnitCircle * radius;
-            Vector3 spawnPosition = body.position + new Vector3(unitCircle.x, 0f, unitCircle.y);
+        {            
+            Vector2 unitCircle = Random.insideUnitCircle * SPAWN_RADIUS;
+            Vector3 spawnPosition = body.position + new Vector3(unitCircle.x, 0f, unitCircle.y) + SPAWN_OFFSET *  Vector3.down;
             return spawnPosition;
         }
 
@@ -97,6 +101,12 @@ namespace Game.Runtime
             List<PoolID> poolIDs = new(ToppingManager.Instance.CurrentToppingData.PoolIDs);
             poolIDs.Shuffle();
             return poolIDs[0];
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(body.position + SPAWN_OFFSET * Vector3.down, SPAWN_RADIUS);
         }
     }
 }
