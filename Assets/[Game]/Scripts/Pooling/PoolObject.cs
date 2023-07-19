@@ -21,11 +21,6 @@ namespace Game.Runtime
             DefultScale = transform.localScale;
         }        
 
-        protected virtual void OnDestroy() 
-        {
-            PoolingManager.Instance.DestroyPoolObject(this);
-        }
-
         public virtual void Initialize()
         {
             OnInitialized.Invoke();
