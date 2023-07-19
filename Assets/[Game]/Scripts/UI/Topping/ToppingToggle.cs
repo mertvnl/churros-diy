@@ -39,6 +39,7 @@ namespace Game.UI
             selectedHighlight.SetActive(isSelected);
             if (isSelected)
             {
+                ToppingManager.Instance.SetCurrentToppingData(ToppingData);
                 ToppingManager.Instance.OnToppingChanged.Invoke(ToppingData);
             }
         }
