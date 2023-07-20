@@ -13,6 +13,16 @@ namespace Game.Managers
         private const float MIN_HEAT = 0.25f;
         private const float MAX_HEAT = 0.75f;
 
+        private void OnEnable()
+        {
+            LevelManager.Instance.OnLevelFinished.AddListener(ResetValues);
+        }
+
+        private void OnDisable()
+        {
+            LevelManager.Instance.OnLevelFinished.RemoveListener(ResetValues);
+        }
+
         public void SetIngredient(IIngredientData ingredientData) 
         {
             if (!ingredientData.IsBad)
@@ -29,6 +39,11 @@ namespace Game.Managers
         public bool IsChurrosGood() 
         {            
             return !HasBadIngredient && (ChurrosHeatProgress >= MIN_HEAT && ChurrosHeatProgress <= MAX_HEAT);
+        }
+
+        private void ResetValues() 
+        {
+            HasBadIngredient = false;
         }
     }
 }
