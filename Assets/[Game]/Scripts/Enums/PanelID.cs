@@ -12,7 +12,8 @@ namespace Game.Enums
         ToppingSelectionPanel = 30,
         NextStatePanel = 40,
         StateProgressIndicatorPanel = 50,
-        FryHeatPanel = 60
+        FryHeatPanel = 60,
+        CurrencyPanel = 70
     }
 }
 

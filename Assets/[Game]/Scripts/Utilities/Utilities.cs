@@ -30,6 +30,13 @@ namespace Game.Helpers
             float progress = Mathf.InverseLerp(fromMin, fromMax, value);
             return Mathf.Lerp(toMin, toMax, progress);
         }
+
+        public static Vector3 WorldToUISpace(Canvas canvas, Vector3 worldPosition)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, screenPos, canvas.worldCamera, out Vector2 localPoint);
+            return canvas.transform.TransformPoint(localPoint);
+        }
     }
 }
 

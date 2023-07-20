@@ -17,6 +17,7 @@ namespace Game.Enums
         Dragee_02 = 80,
         Dragee_03 = 90,
         Strawberry_01 = 100,
-        Strawberry_02 = 110
+        Strawberry_02 = 110,
+        CurrencyIcon = 120
     }
 }
