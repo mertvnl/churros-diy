@@ -58,10 +58,13 @@ namespace Game.Runtime
 
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
+                LeanMover.enabled = true;
                 OnInputStart.Invoke();
+                UIManager.Instance.HidePanel(Enums.PanelID.DragToMovePanel);
             }
             else if (Input.GetMouseButtonUp(0))
             {
+                LeanMover.enabled = false;
                 OnInputStop.Invoke();
             }
         }
@@ -86,7 +89,6 @@ namespace Game.Runtime
             void OnMovementCompleted()
             {
                 IsControlable = true;
-                LeanMover.enabled = true;
                 ChurrosGenerator.SetActivation(true);
                 indicator.SetActive(true);
             }

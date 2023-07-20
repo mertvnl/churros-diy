@@ -49,6 +49,7 @@ namespace Game.Runtime
             if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 StartSpawn();
+                UIManager.Instance.HidePanel(PanelID.DragToMovePanel);
             }
             else if(Input.GetMouseButtonUp(0)) 
             {

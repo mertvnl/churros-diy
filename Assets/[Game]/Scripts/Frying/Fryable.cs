@@ -23,7 +23,7 @@ namespace Game.Runtime
         {
             fryingParticle.Play();
             SoundManager.Instance.PlayContinuousSound(AudioID.Frying);
-            
+            UIManager.Instance.HidePanel(Enums.PanelID.TapAndHoldPanel);
             Fry();
         }
 

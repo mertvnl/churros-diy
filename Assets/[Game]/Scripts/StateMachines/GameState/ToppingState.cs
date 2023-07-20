@@ -17,6 +17,7 @@ namespace Game.Runtime
             yield return new WaitForSeconds(STATE_DELAY);
             UIManager.Instance.ShowPanel(PanelID.ToppingSelectionPanel);
             UIManager.Instance.ShowPanel(PanelID.StateProgressIndicatorPanel);
+            UIManager.Instance.ShowPanel(PanelID.DragToMovePanel);
             GameStateManager.Instance.OnEnterToppingState.Invoke();
             yield break;
         }

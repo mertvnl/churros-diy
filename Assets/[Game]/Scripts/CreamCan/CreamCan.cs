@@ -83,12 +83,15 @@ namespace Game.Runtime
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 OnInputStart.Invoke();
+                LeanMover.enabled = true;
                 SelectTween();
                 SoundManager.Instance.PlaySound(Models.AudioID.Creme);
                 _canUpdateHeight = true;
+                UIManager.Instance.HidePanel(Enums.PanelID.DragToMovePanel);
             }
             else if (Input.GetMouseButtonUp(0))
             {
+                LeanMover.enabled = false;
                 OnInputStop.Invoke();
                 DeselectTween();
                 _canUpdateHeight = false;
@@ -103,7 +106,6 @@ namespace Game.Runtime
 
             void OnMovementCompleted()
             {
-                LeanMover.enabled = true;
                 IsControlable = true;
                 indicator.SetActive(true);
             }

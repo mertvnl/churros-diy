@@ -19,6 +19,7 @@ namespace Game.Runtime
             CameraManager.Instance.ActivateCamera(CameraID.DrawingCamera, CAMERA_BLEND_DURATION);           
             yield return new WaitForSeconds(STATE_DELAY);
             UIManager.Instance.ShowPanel(PanelID.StateProgressIndicatorPanel);
+            UIManager.Instance.ShowPanel(PanelID.DragToMovePanel);
             GameStateManager.Instance.OnEnterChurrosDrawingState.Invoke();
         }
 
