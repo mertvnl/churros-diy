@@ -12,5 +12,11 @@ namespace Game.Helpers
         public static readonly int Happy = Animator.StringToHash(nameof(Happy));
         public static readonly int Sad = Animator.StringToHash(nameof(Sad));
     }
+
+    public static class ReactionStrings
+    {
+        public static readonly int Angry = 0;
+        public static readonly int Happy = 1;
+    }
 }
 

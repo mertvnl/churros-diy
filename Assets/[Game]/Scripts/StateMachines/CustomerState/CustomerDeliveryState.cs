@@ -16,6 +16,7 @@ namespace Game.Runtime
         public override void EnterState()
         {
             CustomerAnimation.SetTrigger(ChurrosScoreManager.Instance.IsChurrosGood() ? AnimatorStrings.Happy : AnimatorStrings.Sad);
+            StateMachine.GetComponent<CustomerReaction>().React(ChurrosScoreManager.Instance.IsChurrosGood() ? ReactionStrings.Happy : ReactionStrings.Angry);
         }
     }
 }
