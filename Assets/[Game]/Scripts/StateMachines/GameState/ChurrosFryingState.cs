@@ -26,7 +26,8 @@ namespace Game.Runtime
 
         public override IEnumerator ExitState()
         {
-            UIManager.Instance.HidePanel(PanelID.FryHeatPanel);         
+            UIManager.Instance.HidePanel(PanelID.FryHeatPanel);
+            ChurrosScoreManager.Instance.SetChurrosHeatProgress(FryingSlider.Instance.Slider.value);
             GameStateManager.Instance.OnExitChurrosFryingState.Invoke();
             yield break;
         }
