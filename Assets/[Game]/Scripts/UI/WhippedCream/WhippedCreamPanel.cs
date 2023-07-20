@@ -52,10 +52,12 @@ namespace Game.Runtime
 
         private void SelectDefaultItem()
         {
+            ToggleGroup.SetAllTogglesOff();
+
             if (_defaultCreamItem == null)
                 return;
 
-            _defaultCreamItem.ToggleItem(true);
+            _defaultCreamItem.SetDefault();
         }
 
         private void CreateCreamItems()

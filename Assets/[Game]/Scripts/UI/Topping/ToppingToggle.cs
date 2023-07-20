@@ -12,6 +12,7 @@ namespace Game.UI
         private Toggle _toggle;
         public Toggle Toggle => _toggle == null ? _toggle = GetComponent<Toggle>() : _toggle;
         public ToppingData ToppingData { get; private set; }
+        public ToggleGroup ToggleGroup { get; private set; }
 
         [SerializeField] private Image iconImage;
         [SerializeField] private GameObject selectedHighlight;
@@ -29,7 +30,8 @@ namespace Game.UI
         public void Initialize(ToppingData toppingData, ToggleGroup toggleGroup, bool isDefault = false) 
         {
             ToppingData = toppingData;
-            Toggle.group = toggleGroup;
+            ToggleGroup = toggleGroup;
+            Toggle.group = ToggleGroup;        
             SetIcon();
             ToggleItem(isDefault);
         }
@@ -44,6 +46,12 @@ namespace Game.UI
                 if (LevelManager.Instance.IsLevelStarted)
                     SoundManager.Instance.PlaySound(AudioID.ToppingSelection);
             }
+        }   
+        
+        public void SetDefault() 
+        {
+            Toggle.isOn = true;
+            ToggleItem(true);
         }
 
         private void SetIcon() 

@@ -34,6 +34,12 @@ namespace Game.Runtime
             SetVisuals();
         }
 
+        public void SetDefault()
+        {
+            Toggle.isOn = true;
+            ToggleItem(true);
+        }
+
         private void SetVisuals()
         {
             if (_data == null) 
