@@ -1,3 +1,4 @@
+using Game.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,11 +15,13 @@ namespace Game.Runtime
         private void OnEnable()
         {
             Customer.OnInitialized.AddListener(Initialize);
+            GameStateManager.Instance.OnEnterChurrosDeliveryState.AddListener(() => SetState(new CustomerDeliveryState(this)));
         }
 
         private void OnDisable()
         {
             Customer.OnInitialized.RemoveListener(Initialize);
+            GameStateManager.Instance.OnEnterChurrosDeliveryState.RemoveListener(() => SetState(new CustomerDeliveryState(this)));
         }
 
         private void Update()

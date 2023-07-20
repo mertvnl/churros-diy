@@ -18,7 +18,7 @@ namespace Game.Runtime
 
         public override void EnterState()
         {
-            CustomerAnimation.SetTrigger(AnimatorStrings.Idle);
+            CustomerAnimation.SetTrigger(AnimatorStrings.Order);
             CustomerRotation.LookPosition(Vector3.zero, onComplete: () => 
             {
                 GameStateManager.Instance.CurrentStateMachine.EnterNextState();
