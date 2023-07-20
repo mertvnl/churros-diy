@@ -48,6 +48,7 @@ namespace Game.UI
         {
             ToppingToggle toppingToggle = Instantiate(togglePrefab, content).GetComponent<ToppingToggle>();           
             toppingToggle.Initialize(toppingData, ToggleGroup, isDefault);
+            ToppingToggles.Add(toppingToggle);
         }
 
         private void SelectDefault() 
