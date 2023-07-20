@@ -11,7 +11,7 @@ namespace Game.Managers
         public bool HasBadIngredient { get; private set; }
 
         private const float MIN_HEAT = 0.25f;
-        private const float MAX_HEAT = 0.6f;
+        private const float MAX_HEAT = 0.75f;
 
         public void SetIngredient(IIngredientData ingredientData) 
         {

@@ -19,7 +19,7 @@ namespace Game.Managers
 
         [field: SerializeField] public ToppingDatabase ToppingDatabase { get; private set; }
 
-        private const int MAX_TOPPING_COUNT = 150;
+        private const int MAX_TOPPING_COUNT = 200;
         private const int COMPLETE_THRESHOLD = 50;
 
         private void OnEnable()
