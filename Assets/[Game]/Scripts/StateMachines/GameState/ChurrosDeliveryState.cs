@@ -27,6 +27,9 @@ namespace Game.Runtime
         private const float SPAWN_RADIUS = 250f;
         private const float SPAWN_OFFSET = 50f;
 
+        private const int MIN_REWARD = 150;
+        private const int MAX_REWARD = 250;
+
         private readonly WaitForSeconds SpawnDelay = new WaitForSeconds(SPAWN_DELAY);
 
         public ChurrosDeliveryState(GameStateMachine stateMachine) : base(stateMachine) { }        
@@ -74,7 +77,10 @@ namespace Game.Runtime
 
         private int GetReward()
         {
-            return 100;
+            bool isGood = ChurrosScoreManager.Instance.IsChurrosGood();
+            int reward = UnityEngine.Random.Range(MIN_REWARD, MIN_REWARD);
+            reward = Mathf.CeilToInt(isGood ? reward * 1f : reward * 0.25f);           
+            return reward;
         }
 
         private float GetMovementDelay() 

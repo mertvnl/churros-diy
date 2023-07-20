@@ -47,8 +47,7 @@ namespace Game.Runtime
 
             if (FryingSlider.Instance.Slider.value >= COMPLETE_THRESHOLD)
             {
-                IsCompleted = true;
-                ChurrosScoreManager.Instance.SetChurrosHeatProgress(FryingSlider.Instance.Slider.value);
+                IsCompleted = true;                
                 UIManager.Instance.ShowPanel(PanelID.NextStatePanel);
             }
         }
