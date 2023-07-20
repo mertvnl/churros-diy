@@ -126,7 +126,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 19}
+  m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 0, y: 371.335}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &3286702613593862446
@@ -465,8 +465,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: CHOOSE A CREAM
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 868e8d54472bdc845ab4b44369ce8c37, type: 2}
-  m_sharedMaterial: {fileID: 2690769625478985801, guid: 868e8d54472bdc845ab4b44369ce8c37, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4e76846be17bb5c4eb92a50eaea78f6a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: d5063dc5f82aa674f9b0e0a9591dd03c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -490,7 +490,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.5
+  m_fontSize: 53.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

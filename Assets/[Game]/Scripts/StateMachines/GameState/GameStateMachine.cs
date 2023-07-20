@@ -9,7 +9,7 @@ namespace Game.Runtime
     public class GameStateMachine : MonoBehaviour
     {
         public List<GameStateBase> GameStates { get; private set; } = new List<GameStateBase>();
-        public GameStateBase CurrentState { get; private set; }
+        public GameStateBase CurrentState { get; private set; }        
 
         private int _currentStateIndex;
 
@@ -42,10 +42,15 @@ namespace Game.Runtime
         {
             if (_currentStateIndex >= GameStates.Count)
                 return;
+          
+            if (CurrentState != null)
+            {
+                StartCoroutine(CurrentState.ExitState());
+            }
 
-            CurrentState?.ExitState();
             CurrentState = GameStates[stateIndex];
-            CurrentState.EnterState();
+            StartCoroutine(CurrentState.EnterState());
+            GameStateManager.Instance.OnStateChanged.Invoke(CurrentState);
         }
 
         private void SetGameStates() 
@@ -56,8 +61,7 @@ namespace Game.Runtime
                 new ChurrosOrderState(this),
                 new ChurrosDrawingState(this),
                 new ChurrosFryingState(this),
-                new WhippedCreamState(this),
-                new SyrupState(this),
+                new WhippedCreamState(this),               
                 new ToppingState(this),
             };
         }

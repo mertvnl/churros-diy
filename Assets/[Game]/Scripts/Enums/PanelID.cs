@@ -9,7 +9,10 @@ namespace Game.Enums
         None = 0,
         LevelStartPanel = 10,
         WhippedCreamPanel = 20,
-        ToppingSelectionPanel = 30
+        ToppingSelectionPanel = 30,
+        NextStatePanel = 40,
+        StateProgressIndicatorPanel = 50,
+        FryHeatPanel = 60
     }
 }
 

@@ -22,10 +22,11 @@ namespace Game.Runtime
         private Vector3 _lastSpawnPoint = Vector3.negativeInfinity;
         private bool _isAvailable;
 
+        public const int MAX_SPAWN_SPLINE_POINT = 50;
         private const float MIN_SPAWN_DISTANCE = 0.02f;
         private const float MAX_SPAWN_DISTANCE = 0.2f;
         private const float POINT_SPAWN_OFFSET = 0.05f;
-        private const int MAX_SPAWN_SPLINE_POINT = 100;
+        
 
         private void OnEnable()
         {

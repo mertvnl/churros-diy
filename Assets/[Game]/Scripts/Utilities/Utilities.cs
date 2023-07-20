@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Utilities 
+namespace Game.Helpers 
 {
     public static class Utilities 
     {
@@ -23,6 +23,12 @@ namespace Game.Utilities
             list[pos1] = list[pos2];
             list[pos2] = tmp;
 
+        }
+
+        public static float Remap(float value, float fromMin, float fromMax, float toMin, float toMax) 
+        {
+            float progress = Mathf.InverseLerp(fromMin, fromMax, value);
+            return Mathf.Lerp(toMin, toMax, progress);
         }
     }
 }

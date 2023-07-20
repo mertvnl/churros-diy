@@ -1,6 +1,6 @@
 using Game.Managers;
 using Game.Models;
-using Game.Utilities;
+using Game.Helpers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

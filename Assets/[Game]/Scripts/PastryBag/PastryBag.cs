@@ -81,7 +81,7 @@ namespace Game.Runtime
         private void InitialMovement()
         {
             graphics.DOScale(_initialScale, 0.25f).SetDelay(0.5f);
-            graphics.DOLocalMoveX(_initialX, 1f).OnComplete(OnMovementCompleted).SetDelay(0.5f);
+            graphics.DOLocalMoveX(_initialX, 0.5f).OnComplete(OnMovementCompleted).SetDelay(0.5f);
 
             void OnMovementCompleted()
             {

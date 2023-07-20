@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Game.Utilities;
+using Game.Helpers;
 using Game.Managers;
 
 namespace Game.Runtime 

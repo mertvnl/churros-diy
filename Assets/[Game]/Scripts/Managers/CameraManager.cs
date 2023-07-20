@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Game.Managers 
 {
     public class CameraManager : Singleton<CameraManager>
@@ -41,7 +42,7 @@ namespace Game.Managers
         {
             if (!VirtualCameras.ContainsKey(cameraID))
                 return;
-
+            
             IVirtualCamera virtualCamera = VirtualCameras[cameraID];
             ActivateCamera(virtualCamera, blendDuration);
         }

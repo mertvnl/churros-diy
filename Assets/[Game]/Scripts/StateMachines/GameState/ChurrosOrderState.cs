@@ -9,9 +9,10 @@ namespace Game.Runtime
     {
         public ChurrosOrderState(GameStateMachine stateMachine) : base(stateMachine) { }        
 
-        public override void EnterState()
+        public override IEnumerator EnterState()
         {
             GameStateManager.Instance.OnEnterCustomerOrderState.Invoke();
+            yield break;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Game.Runtime
     {
         private CreamCan _creamCan;
         private CreamCan CreamCan => _creamCan == null ? _creamCan = GetComponent<CreamCan>() : _creamCan;
-
+        public int TotalPointCount { get; private set; }
         public bool IsFirstPoint => _currentPointCount == 0;
 
         [Header("References")]
@@ -27,16 +27,17 @@ namespace Game.Runtime
 
         private Vector3 _lastSpawnPoint = Vector3.negativeInfinity;
         private int _currentPointCount;
-        private int _totalPointCount;
+        
         private SplineComputer _currentSpline;
         private SplineMesh _currentSplineMesh;
         private bool _isCreamingInProgress;
         private Color _targetMeshColor;
 
+        public const int MAX_SPAWN_SPLINE_POINT = 100;
         private const float MIN_SPAWN_DISTANCE = 0.02f;
         private const float MAX_SPAWN_DISTANCE = 0.3f;
         private const float POINT_SPAWN_OFFSET = 0f;
-        private const int MAX_SPAWN_SPLINE_POINT = 150;
+        
 
         private void OnEnable()
         {
@@ -104,7 +105,7 @@ namespace Game.Runtime
                 return;
 
             _currentPointCount++;
-            _totalPointCount++;
+            TotalPointCount++;
             _lastSpawnPoint = spawnPosition;
             SplinePoint newPoint = new(spawnPosition);
             _currentSpline.SetPoint(_currentSpline.pointCount, newPoint);
@@ -131,7 +132,7 @@ namespace Game.Runtime
 
         private bool IsMaxPointReached()
         {
-            return _totalPointCount >= MAX_SPAWN_SPLINE_POINT;
+            return TotalPointCount >= MAX_SPAWN_SPLINE_POINT;
         }
 
         private void SetMeshCount()

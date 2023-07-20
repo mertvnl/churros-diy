@@ -1,7 +1,7 @@
 using Game.Managers;
 using UnityEngine;
 
-namespace Game.Utilities
+namespace Game.Helpers
 {
     public class SettingsDebugPanel : EasyPanel
     {

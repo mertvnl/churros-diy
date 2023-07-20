@@ -15,12 +15,14 @@ namespace Game.Managers
         public UnityEvent OnEnterChurrosDrawingState { get; private set; } = new();
         public UnityEvent OnExitChurrosDrawingState { get; private set; } = new();
         public UnityEvent OnEnterChurrosFryingState { get; private set; } = new();
+        public UnityEvent OnExitChurrosFryingState { get; private set; } = new();
         public UnityEvent OnEnterWhippedCreamState { get; private set; } = new();
         public UnityEvent OnExitWhippedCreamState { get; private set; } = new();
         public UnityEvent OnEnterSyrupState { get; private set; } = new();
         public UnityEvent OnEnterToppingState{ get; private set; } = new();
         public UnityEvent OnExitToppingState { get; private set; } = new();
         public UnityEvent OnAllStatesCompleted { get; private set; } = new();
+        public UnityEvent<GameStateBase> OnStateChanged { get; private set; } = new();
 
         public void SetCurrentStateMachine(GameStateMachine stateMachine) 
         {

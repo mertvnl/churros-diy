@@ -10,9 +10,10 @@ namespace Game.Runtime
     {
         public BeginingState(GameStateMachine stateMachine) : base(stateMachine) { }        
 
-        public override void EnterState()
+        public override IEnumerator EnterState()
         {
             GameStateManager.Instance.OnEnterBeginningState.Invoke();
+            yield break;
         }
     }
 }

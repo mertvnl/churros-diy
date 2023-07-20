@@ -37,7 +37,7 @@ namespace Game.Props
         {
             _myTransform = transform;
 
-            _initialPos = _myTransform.position;
+            _initialPos = _myTransform.localPosition;
             _distance = Vector3.Distance(_initialPos, lowerPos);
         }
 
@@ -56,10 +56,10 @@ namespace Game.Props
             if (_curTween != null)
                 _curTween.Kill();
 
-            float curDistance = Vector3.Distance(_myTransform.position, targetPos);
+            float curDistance = Vector3.Distance(_myTransform.localPosition, targetPos);
             float duration = (movementDuration * curDistance) / _distance;
 
-            _curTween = _myTransform.DOMove(targetPos, duration).SetEase(movementEase).OnComplete(()=>
+            _curTween = _myTransform.DOLocalMove(targetPos, duration).SetEase(movementEase).OnComplete(()=>
             {
                 _curTween = null;
             }).SetLink(gameObject);

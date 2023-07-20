@@ -38,6 +38,9 @@ namespace Game.Runtime
         private const float OFFSET_Y = 0.02f;
         private const float STARTING_POS_X = 1f;
 
+        private const float MOVEMENT_DURATION = 1f;
+        private const float MOVEMENT_DELAY= 0.75f;
+
         private void Awake()
         {
             Initialize();
@@ -94,8 +97,8 @@ namespace Game.Runtime
         [Button]
         private void InitialMovement()
         {
-            graphics.DOScale(_initialScale, 0.25f);
-            graphics.DOLocalMoveX(_initialX, 1f).OnComplete(OnMovementCompleted).SetDelay(0.5f).SetDelay(0.5f);
+            graphics.DOScale(_initialScale, 0.25f).SetDelay(MOVEMENT_DELAY);
+            graphics.DOLocalMoveX(_initialX, MOVEMENT_DURATION).SetDelay(MOVEMENT_DELAY).OnComplete(OnMovementCompleted).SetDelay(0.5f).SetDelay(0.5f);
 
             void OnMovementCompleted()
             {

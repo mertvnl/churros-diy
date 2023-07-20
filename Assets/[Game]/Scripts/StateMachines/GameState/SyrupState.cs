@@ -9,9 +9,10 @@ namespace Game.Runtime
     {
         public SyrupState(GameStateMachine stateMachine) : base(stateMachine) { }        
 
-        public override void EnterState()
+        public override IEnumerator EnterState()
         {
             GameStateManager.Instance.OnEnterSyrupState.Invoke();
+            yield break;
         }
     }
 }

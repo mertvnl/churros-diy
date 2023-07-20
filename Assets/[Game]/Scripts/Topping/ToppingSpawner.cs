@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Managers;
-using Game.Utilities;
+using Game.Helpers;
 using DG.Tweening;
 using DG.Tweening.Core;
 using Sirenix.OdinInspector;
