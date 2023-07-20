@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Game.Helpers;
 using Game.Managers;
 using Lean.Touch;
 using Sirenix.OdinInspector;
@@ -63,39 +64,42 @@ namespace Game.Runtime
         {
             GameStateManager.Instance.OnEnterWhippedCreamState.AddListener(InitialMovement);
             GameStateManager.Instance.OnExitWhippedCreamState.AddListener(Dispose);
+            LeanInputController.Instance.OnFingerDown.AddListener(OnFingerDown);
+            LeanInputController.Instance.OnFingerUp.AddListener(OnFingerUp);
         }
 
         private void OnDisable()
         {
             GameStateManager.Instance.OnEnterWhippedCreamState.RemoveListener(InitialMovement);
             GameStateManager.Instance.OnExitWhippedCreamState.RemoveListener(Dispose);
+            LeanInputController.Instance.OnFingerDown.RemoveListener(OnFingerDown);
+            LeanInputController.Instance.OnFingerUp.RemoveListener(OnFingerUp);
         }
 
         private void Update()
         {
-            UpdateHeight();
-            CheckInput();
+            UpdateHeight();          
         }
 
-        private void CheckInput()
+        private void OnFingerDown() 
         {
             if (!IsControlable) return;
 
-            if (Input.touches.Any(x => x.phase == TouchPhase.Began) && !EventSystem.current.IsPointerOverGameObject())
-            {
-                OnInputStart.Invoke();
-                LeanMover.enabled = true;
-                SelectTween();
-                _canUpdateHeight = true;
-                UIManager.Instance.HidePanel(Enums.PanelID.DragToMovePanel);
-            }
-            else if (Input.touches.Any(x => x.phase == TouchPhase.Ended))
-            {
-                LeanMover.enabled = false;
-                OnInputStop.Invoke();
-                DeselectTween();
-                _canUpdateHeight = false;
-            }
+            OnInputStart.Invoke();
+            LeanMover.enabled = true;
+            SelectTween();
+            _canUpdateHeight = true;
+            UIManager.Instance.HidePanel(Enums.PanelID.DragToMovePanel);
+        }
+
+        private void OnFingerUp() 
+        {
+            if (!IsControlable) return;
+
+            LeanMover.enabled = false;
+            OnInputStop.Invoke();
+            DeselectTween();
+            _canUpdateHeight = false;
         }
 
         [Button]

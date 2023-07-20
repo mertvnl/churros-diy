@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Game.Helpers;
 using Game.Managers;
 using Lean.Touch;
 using Sirenix.OdinInspector;
@@ -35,39 +36,40 @@ namespace Game.Runtime
         {
             GameStateManager.Instance.OnEnterChurrosDrawingState.AddListener(InitialMovement);
             GameStateManager.Instance.OnExitChurrosDrawingState.AddListener(Dispose);
+            LeanInputController.Instance.OnFingerDown.AddListener(OnFingerDown);
+            LeanInputController.Instance.OnFingerUp.AddListener(OnFingerUp);
         }
 
         private void OnDisable()
         {
             GameStateManager.Instance.OnEnterChurrosDrawingState.RemoveListener(InitialMovement);
             GameStateManager.Instance.OnExitChurrosDrawingState.RemoveListener(Dispose);
+            LeanInputController.Instance.OnFingerDown.RemoveListener(OnFingerDown);
+            LeanInputController.Instance.OnFingerUp.RemoveListener(OnFingerUp);
         }
 
         private void Awake()
         {
             Initialize();
+        }     
+
+        private void OnFingerDown() 
+        {
+            if (!IsControlable) 
+                return;
+
+            LeanMover.enabled = true;
+            OnInputStart.Invoke();
+            UIManager.Instance.HidePanel(Enums.PanelID.DragToMovePanel);            
         }
 
-        private void Update()
+        private void OnFingerUp()            
         {
-            CheckInput();
-        }
+            if (!IsControlable) 
+                return;
 
-        private void CheckInput()
-        {
-            if (!IsControlable) return;
-
-            if (Input.touches.Any(x => x.phase == TouchPhase.Began) && !EventSystem.current.IsPointerOverGameObject())
-            {
-                LeanMover.enabled = true;
-                OnInputStart.Invoke();
-                UIManager.Instance.HidePanel(Enums.PanelID.DragToMovePanel);
-            }
-            else if (Input.touches.Any(x => x.phase == TouchPhase.Ended))
-            {
-                LeanMover.enabled = false;
-                OnInputStop.Invoke();
-            }
+            LeanMover.enabled = false;
+            OnInputStop.Invoke();           
         }
 
         private void Initialize()

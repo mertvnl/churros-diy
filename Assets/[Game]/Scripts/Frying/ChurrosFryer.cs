@@ -1,3 +1,4 @@
+using Game.Helpers;
 using Game.Managers;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,23 +17,31 @@ namespace Game.Runtime
         {
             GameStateManager.Instance.OnEnterChurrosFryingState.AddListener(Activate);
             GameStateManager.Instance.OnExitChurrosFryingState.AddListener(Deactivate);
-            InputManager.Instance.OnTouch.AddListener(FryChurro);
+            LeanInputController.Instance.OnFingerDown.AddListener(OnFingerDown);
+            LeanInputController.Instance.OnFingerUp.AddListener(OnFingerUp);
         }
 
         private void OnDisable()
         {
             GameStateManager.Instance.OnEnterChurrosFryingState.RemoveListener(Activate);
             GameStateManager.Instance.OnExitChurrosFryingState.RemoveListener(Deactivate);
-            InputManager.Instance.OnTouch.RemoveListener(FryChurro);
+            LeanInputController.Instance.OnFingerDown.RemoveListener(OnFingerDown);
+            LeanInputController.Instance.OnFingerUp.RemoveListener(OnFingerUp);
+
         }
 
-        private void FryChurro(TouchData data)
+        private void OnFingerDown() 
         {
-            if (data.IsTouched && IsActive)
-                StartFrying();
-            else
-                StopFrying();
+            if (!IsActive)
+                return;
+
+            StartFrying();
         }
+
+        private void OnFingerUp() 
+        {
+            StopFrying();
+        }     
 
         private void StartFrying()
         {

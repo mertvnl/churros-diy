@@ -35,27 +35,32 @@ namespace Game.Runtime
         private void OnEnable()
         {
             ToppingBottle.OnDisabled.AddListener(StopSpawn);
+            LeanInputController.Instance.OnFingerDown.AddListener(OnFingerDown);
+            LeanInputController.Instance.OnFingerUp.AddListener(OnFingerUp);
         }
 
         private void OnDisable()
         {
             ToppingBottle.OnDisabled.RemoveListener(StopSpawn);
-        }
+            LeanInputController.Instance.OnFingerDown.RemoveListener(OnFingerDown);
+            LeanInputController.Instance.OnFingerUp.RemoveListener(OnFingerUp);
+        }      
 
-        private void Update()
+        private void OnFingerDown() 
         {
             if (!ToppingBottle.IsActive)
                 return;
 
-            if(Input.touches.Any(x => x.phase == TouchPhase.Began) && !EventSystem.current.IsPointerOverGameObject())
-            {
-                StartSpawn();
-                UIManager.Instance.HidePanel(PanelID.DragToMovePanel);
-            }
-            else if(Input.touches.Any(x => x.phase == TouchPhase.Ended || x.phase == TouchPhase.Canceled)) 
-            {
-                StopSpawn();
-            }
+            StartSpawn();
+            UIManager.Instance.HidePanel(PanelID.DragToMovePanel);
+        }
+
+        private void OnFingerUp() 
+        {
+            if (!ToppingBottle.IsActive)
+                return;
+
+            StopSpawn();
         }
 
         private void StartSpawn() 
