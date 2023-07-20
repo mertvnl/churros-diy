@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Game.Managers;
 using Game.Runtime;
 using Lean.Touch;
 using System.Collections;
@@ -37,6 +38,8 @@ public class PastryBlendShapeController : MonoBehaviour
     public void Squeeze()
     {
         UpdateBlendShape(BLENDSHAPE_MAX_WEIGHT);
+        SoundManager.Instance.PlaySound(Game.Models.AudioID.Squeezing);
+        HapticManager.PlayHaptic(Lofelt.NiceVibrations.HapticPatterns.PresetType.MediumImpact);
     }
 
     public void Release()

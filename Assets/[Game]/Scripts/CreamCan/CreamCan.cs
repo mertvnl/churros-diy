@@ -84,6 +84,7 @@ namespace Game.Runtime
             {
                 OnInputStart.Invoke();
                 SelectTween();
+                SoundManager.Instance.PlaySound(Models.AudioID.Creme);
                 _canUpdateHeight = true;
             }
             else if (Input.GetMouseButtonUp(0))

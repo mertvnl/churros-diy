@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: AudioDatabase
   m_EditorClassIdentifier: 
   audioDictionary:
-    m_keys: 05000000
+    m_keys: 050000000100000002000000030000000400000006000000070000000900000008000000
     m_values:
     - {fileID: 8300000, guid: 8f730ee7593dbce49ae79a1d403ec2c6, type: 3}
+    - {fileID: 8300000, guid: caed1a22dd7f9f948a3c169634ca1b3d, type: 3}
+    - {fileID: 8300000, guid: 71b755a1e6e7a8d4fbb37cace4845602, type: 3}
+    - {fileID: 8300000, guid: 52e59f4c897028e4983faf0a88b3fe25, type: 3}
+    - {fileID: 8300000, guid: fc96f3684a4eb244987136224048c1d3, type: 3}
+    - {fileID: 8300000, guid: e8afa4b3c297c4827b9d7f81160efe5d, type: 3}
+    - {fileID: 8300000, guid: a1c9914b21cec4fe3b8d5cf18c560d68, type: 3}
+    - {fileID: 8300000, guid: 1701dd160752d8745b48c1a7222db0c0, type: 3}
+    - {fileID: 8300000, guid: 826ac353edd252347ac4703afe73cdf0, type: 3}

@@ -212,6 +212,18 @@ namespace Game.Managers
             _audioSources.Remove(audioId);
         }
 
+        public void StopSound(AudioID audioId)
+        {
+            _audioSources.TryGetValue(audioId, out AudioSource source);
+
+            if (source == null)
+                return;
+
+            source.Stop();
+            AudioPoolingManager.Instance.DestroyPoolObject(source.gameObject);
+            _audioSources.Remove(audioId);
+        }
+
         private void AddPitchCollection(AudioID audioId)
         {
             string tweenID = GetInstanceID().ToString() + audioId;

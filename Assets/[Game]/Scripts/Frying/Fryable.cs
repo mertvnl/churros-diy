@@ -23,7 +23,7 @@ namespace Game.Runtime
         {
             fryingParticle.Play();
             SoundManager.Instance.PlayContinuousSound(AudioID.Frying);
-
+            
             Fry();
         }
 
@@ -40,6 +40,7 @@ namespace Game.Runtime
                 .OnUpdate(()=> {
                     FryingData.FryingDuration += Time.deltaTime;
                     FryingOil.OnFry?.Invoke(FryingData);
+                    HapticManager.PlayHaptic(Lofelt.NiceVibrations.HapticPatterns.PresetType.LightImpact);
                 });
         }
 

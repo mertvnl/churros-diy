@@ -1,3 +1,4 @@
+using Game.Managers;
 using Game.Models;
 using System;
 using System.Collections;
@@ -30,6 +31,8 @@ namespace Game.Runtime
             materials[COLOR_MATERIAL_INDEX].color = data.Color;
             materials[TEXTURE_MATERIAL_INDEX].mainTexture = data.Texture; 
             renderer.materials = materials;
+
+            SoundManager.Instance.PlaySound(AudioID.ToppingSelection);
         }
     }
 }
