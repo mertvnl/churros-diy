@@ -120,6 +120,7 @@ namespace Game.Runtime
             }
 
             HapticManager.PlayHaptic(Lofelt.NiceVibrations.HapticPatterns.PresetType.SoftImpact);
+            SoundManager.Instance.PlaySound(Models.AudioID.Creme, 1, true);
         }
 
         private bool CanSpawnPoint()

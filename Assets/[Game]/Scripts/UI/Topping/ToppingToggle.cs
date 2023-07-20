@@ -41,7 +41,8 @@ namespace Game.UI
             {
                 ToppingManager.Instance.SetCurrentToppingData(ToppingData);
                 ToppingManager.Instance.OnToppingChanged.Invoke(ToppingData);
-                SoundManager.Instance.PlaySound(AudioID.ToppingSelection);
+                if (LevelManager.Instance.IsLevelStarted)
+                    SoundManager.Instance.PlaySound(AudioID.ToppingSelection);
             }
         }
 

@@ -73,7 +73,7 @@ namespace Game.Managers
 
         #region Constant Variables
         private const float LOOP_VOLUME_DELAY = 0.2f;
-        private const float OVERLAP_WAIT_DELAY = 0.1f;
+        private const float OVERLAP_WAIT_DELAY = 0.2f;
         private const float MIN_PITCH = 0.1f;
         private const float MAX_PITCH = 3f;
         private const string SOUND_EFFECT_SAVE_ID = "SoundEffectSave";

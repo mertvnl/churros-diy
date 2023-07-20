@@ -14,7 +14,7 @@ namespace Game.Managers
 
         [SerializeField] private List<AudioPool> _pools = new();
 
-        private void Start()
+        private void Awake()
         {
             SetPoolCollection();
             SetInitialPoolStacks();

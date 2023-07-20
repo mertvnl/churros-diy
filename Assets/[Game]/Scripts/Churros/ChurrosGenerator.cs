@@ -92,6 +92,7 @@ namespace Game.Runtime
             }
 
             HapticManager.PlayHaptic(Lofelt.NiceVibrations.HapticPatterns.PresetType.SoftImpact);
+            SoundManager.Instance.PlaySound(Game.Models.AudioID.Squeezing, 1, true);
         }
 
         private void SetMeshCount()

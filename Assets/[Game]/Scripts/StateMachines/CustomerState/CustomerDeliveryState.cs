@@ -1,4 +1,5 @@
 using Game.Helpers;
+using Game.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,7 @@ namespace Game.Runtime
 
         public override void EnterState()
         {
-            //Check from manager if it is a happy or sad animation.
-
-            CustomerAnimation.SetTrigger(AnimatorStrings.Happy);
+            CustomerAnimation.SetTrigger(ChurrosScoreManager.Instance.IsChurrosGood() ? AnimatorStrings.Happy : AnimatorStrings.Sad);
         }
     }
 }
