@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -80,7 +81,7 @@ namespace Game.Runtime
         {
             if (!IsControlable) return;
 
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.touches.Any(x => x.phase == TouchPhase.Began) && !EventSystem.current.IsPointerOverGameObject())
             {
                 OnInputStart.Invoke();
                 LeanMover.enabled = true;
@@ -88,7 +89,7 @@ namespace Game.Runtime
                 _canUpdateHeight = true;
                 UIManager.Instance.HidePanel(Enums.PanelID.DragToMovePanel);
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (Input.touches.Any(x => x.phase == TouchPhase.Ended))
             {
                 LeanMover.enabled = false;
                 OnInputStop.Invoke();

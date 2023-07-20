@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -67,7 +68,7 @@ public class InputManager : Singleton<InputManager>
 
     private void GetInputs()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touches.Any(x => x.phase == TouchPhase.Began))
         {
             //LevelManager.Instance.StartLevel();
             timePassed = 0;
@@ -76,7 +77,7 @@ public class InputManager : Singleton<InputManager>
             _touchData.IsTouched = true;
             OnTouch.Invoke(_touchData);
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.touches.Any(x => x.phase == TouchPhase.Ended))
         {
             secondPos = Input.mousePosition;
 
@@ -90,7 +91,7 @@ public class InputManager : Singleton<InputManager>
             CalculateDirection();
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.touches.Any())
         {
             timePassed += Time.deltaTime;
         }

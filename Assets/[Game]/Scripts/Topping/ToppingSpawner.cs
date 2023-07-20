@@ -8,6 +8,7 @@ using DG.Tweening.Core;
 using Sirenix.OdinInspector;
 using UnityEngine.EventSystems;
 using Game.Enums;
+using System.Linq;
 
 namespace Game.Runtime 
 {
@@ -46,12 +47,12 @@ namespace Game.Runtime
             if (!ToppingBottle.IsActive)
                 return;
 
-            if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if(Input.touches.Any(x => x.phase == TouchPhase.Began) && !EventSystem.current.IsPointerOverGameObject())
             {
                 StartSpawn();
                 UIManager.Instance.HidePanel(PanelID.DragToMovePanel);
             }
-            else if(Input.GetMouseButtonUp(0)) 
+            else if(Input.touches.Any(x => x.phase == TouchPhase.Ended || x.phase == TouchPhase.Canceled)) 
             {
                 StopSpawn();
             }
