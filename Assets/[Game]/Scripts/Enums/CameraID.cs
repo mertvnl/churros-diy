@@ -10,7 +10,8 @@ namespace Game.Enums
         CustomerCamera = 10,
         DrawingCamera = 20,
         FryingCamera = 30,
-        ToppingCamera = 40
+        ToppingCamera = 40,
+        DeliveryCamera = 50
     }
 }
 

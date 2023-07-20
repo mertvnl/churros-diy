@@ -16,6 +16,7 @@ namespace Game.Runtime
         {
             yield return new WaitForSeconds(STATE_DELAY);
             UIManager.Instance.ShowPanel(PanelID.ToppingSelectionPanel);
+            UIManager.Instance.ShowPanel(PanelID.StateProgressIndicatorPanel);
             GameStateManager.Instance.OnEnterToppingState.Invoke();
             yield break;
         }
@@ -23,6 +24,7 @@ namespace Game.Runtime
         public override IEnumerator ExitState()
         {
             UIManager.Instance.HidePanel(PanelID.ToppingSelectionPanel);
+            UIManager.Instance.HidePanel(PanelID.StateProgressIndicatorPanel);
             GameStateManager.Instance.OnExitToppingState.Invoke();
             yield break;
         }

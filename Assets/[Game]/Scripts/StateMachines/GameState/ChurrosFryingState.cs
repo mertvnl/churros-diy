@@ -11,7 +11,7 @@ namespace Game.Runtime
         public ChurrosFryingState(GameStateMachine stateMachine) : base(stateMachine) { }
 
         private const float CAMERA_BLEND_DURATION = 0.75f;
-        private const float STATE_DELAY = 1f;
+        private const float STATE_DELAY = 0.5f;
         private const float EVENT_DELAY = 0.5f;
 
         public override IEnumerator EnterState()
@@ -20,12 +20,14 @@ namespace Game.Runtime
             CameraManager.Instance.ActivateCamera(CameraID.FryingCamera, CAMERA_BLEND_DURATION);
             yield return new WaitForSeconds(EVENT_DELAY);
             UIManager.Instance.ShowPanel(PanelID.FryHeatPanel);
+            UIManager.Instance.ShowPanel(PanelID.StateProgressIndicatorPanel);
             GameStateManager.Instance.OnEnterChurrosFryingState.Invoke();
         }
 
         public override IEnumerator ExitState()
         {
             UIManager.Instance.HidePanel(PanelID.FryHeatPanel);
+            UIManager.Instance.HidePanel(PanelID.StateProgressIndicatorPanel);
             yield break;
         }
     }

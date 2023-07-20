@@ -1,3 +1,4 @@
+using Game.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,8 @@ namespace Game.Runtime
         private void Initialize() 
         {
             IsActive = true;
-            Rigidbody.isKinematic = false;         
+            Rigidbody.isKinematic = false;
+            ToppingManager.Instance.AddTopping(this);
         }
 
         private void OnCollisionEnter(Collision collision)
