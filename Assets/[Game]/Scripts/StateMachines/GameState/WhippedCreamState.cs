@@ -17,12 +17,14 @@ namespace Game.Runtime
         {
             CameraManager.Instance.ActivateCamera(CameraID.ToppingCamera, CAMERA_BLEND_DURATION);
             yield return new WaitForSeconds(STATE_DELAY);
+            UIManager.Instance.ShowPanel(PanelID.StateProgressIndicatorPanel);
             GameStateManager.Instance.OnEnterWhippedCreamState.Invoke();
             yield break;
         }
 
         public override IEnumerator ExitState()
         {
+            UIManager.Instance.HidePanel(PanelID.StateProgressIndicatorPanel);
             GameStateManager.Instance.OnExitWhippedCreamState.Invoke();
             yield break;
         }
