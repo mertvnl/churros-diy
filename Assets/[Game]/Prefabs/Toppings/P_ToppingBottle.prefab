@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 7131837828365890081}
-  visual: {fileID: 8997493570475637615}
 --- !u!114 &6081721818312314275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +292,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e825b73dce68b54c97edbf72bc7ab80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2e825b73dce68b54c97edbf72bc7ab80, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 2e825b73dce68b54c97edbf72bc7ab80, type: 3}

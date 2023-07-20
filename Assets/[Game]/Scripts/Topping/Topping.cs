@@ -29,7 +29,7 @@ namespace Game.Runtime
         {
             IsActive = true;
             Rigidbody.isKinematic = false;
-            ToppingManager.Instance.AddTopping(this);
+            ToppingManager.Instance.AddTopping(this);            
         }
 
         private void OnCollisionEnter(Collision collision)

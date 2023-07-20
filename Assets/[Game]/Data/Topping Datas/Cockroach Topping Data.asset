@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0684d1f4cdb68a441887ace79f452207, type: 3}
+  m_Name: Cockroach Topping Data
+  m_EditorClassIdentifier: 
+  Name: Strawberry
+  Icon: {fileID: 21300000, guid: 47c5593fbbcbdeb43baa6c53cd6cdfd9, type: 3}
+  BottleTipColor: {r: 0.7019608, g: 0.5176471, b: 0.4431373, a: 1}
+  BottleBodyTexture: {fileID: 2800000, guid: a9fc1a3d62c1b8c41a8566ab40961236, type: 3}
+  PoolIDs: 82000000
+  <IsBad>k__BackingField: 1

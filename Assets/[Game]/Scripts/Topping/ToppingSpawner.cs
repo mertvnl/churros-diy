@@ -78,6 +78,7 @@ namespace Game.Runtime
             int spawnCount = Random.Range(MIN_SPAWN_COUNT, MAX_SPAWN_COUNT);
             for (int i = 0; i < spawnCount; i++)
             {
+                ChurrosScoreManager.Instance.SetIngredient(ToppingManager.Instance.CurrentToppingData);
                 PoolingManager.Instance.Instantiate(GetTopping(), GetSpawnPosition(), GetSpawnRotation());                
             }
 

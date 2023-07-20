@@ -32,6 +32,7 @@ namespace Game.Runtime
         private SplineMesh _currentSplineMesh;
         private bool _isCreamingInProgress;
         private Color _targetMeshColor;
+        private CreamData _currentCreamData;
 
         public const int MAX_SPAWN_SPLINE_POINT = 100;
         private const float MIN_SPAWN_DISTANCE = 0.02f;
@@ -53,6 +54,7 @@ namespace Game.Runtime
 
         private void UpdateMeshColor(CreamData data)
         {
+            _currentCreamData = data;
             _targetMeshColor = data.Color;
         }
 
@@ -64,6 +66,7 @@ namespace Game.Runtime
             _currentPointCount = 0;
             _lastSpawnPoint = Vector3.negativeInfinity;
             _isCreamingInProgress = false;
+            ChurrosScoreManager.Instance.SetIngredient(_currentCreamData);
         }
 
         private void Update()
