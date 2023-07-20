@@ -19,8 +19,8 @@ namespace Game.Managers
 
         [field: SerializeField] public ToppingDatabase ToppingDatabase { get; private set; }
 
-        private const int MAX_TOPPING_COUNT = 100;
-        private const int COLLECT_THRESHOLD = 50;
+        private const int MAX_TOPPING_COUNT = 150;
+        private const int COMPLETE_THRESHOLD = 50;
 
         private void OnEnable()
         {
@@ -47,7 +47,7 @@ namespace Game.Managers
 
         private void UpdateProgressIndicator() 
         {
-            float progress = Utilities.Remap(SpawnedToppings.Count, 0, COLLECT_THRESHOLD, 0f, 1f);
+            float progress = Utilities.Remap(SpawnedToppings.Count, 0, COMPLETE_THRESHOLD, 0f, 1f);
             ProgressManager.Instance.CurrentStateIndicator.UpdateProgress(progress);
         }
 
@@ -56,7 +56,7 @@ namespace Game.Managers
             if (IsNextStateButtonActive)
                 return;
             
-            if (SpawnedToppings.Count >= COLLECT_THRESHOLD)
+            if (SpawnedToppings.Count >= COMPLETE_THRESHOLD)
             {
                 IsNextStateButtonActive = true;
                 UIManager.Instance.ShowPanel(PanelID.NextStatePanel);

@@ -19,7 +19,17 @@ namespace Game.Runtime
         protected virtual void Awake()
         {
             DefultScale = transform.localScale;
-        }        
+        }
+
+        private void OnEnable()
+        {
+            LevelManager.Instance.OnLevelLoaded.AddListener(OnLevelFinished);
+        }
+
+        private void OnDisable()
+        {
+            LevelManager.Instance.OnLevelLoaded.RemoveListener(OnLevelFinished);
+        }
 
         public virtual void Initialize()
         {
@@ -30,6 +40,11 @@ namespace Game.Runtime
         {
             transform.localScale = DefultScale;
             OnDisposed.Invoke();
+        }
+
+        private void OnLevelFinished() 
+        {
+            PoolingManager.Instance.DestroyPoolObject(this);
         }
     }
 }

@@ -22,11 +22,13 @@ namespace Game.Runtime
         private void OnEnable()
         {
             FryingOil.OnFry += Increase;
+            LevelManager.Instance.OnLevelFinished.AddListener(ResetSlider);
         }
 
         private void OnDisable()
         {
             FryingOil.OnFry -= Increase;
+            LevelManager.Instance.OnLevelFinished.RemoveListener(ResetSlider);
         }
 
         private void Increase(FryingData fryingData)

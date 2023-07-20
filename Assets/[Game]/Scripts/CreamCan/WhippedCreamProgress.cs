@@ -19,7 +19,7 @@ namespace Game.Runtime
 
         [SerializeField] private CreamGenerator creamGenerator;
 
-        private const float MAX_MULTIPLIER = 0.75f;
+        private const float MAX_MULTIPLIER = 0.5f;
 
         private void OnEnable()
         {

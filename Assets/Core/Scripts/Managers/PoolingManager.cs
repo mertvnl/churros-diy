@@ -6,6 +6,8 @@ using UnityEngine.Events;
 using Game.Enums;
 using Game.Runtime;
 using Game.Models;
+using System.Linq;
+using UnityEngine.Pool;
 
 namespace Game.Managers 
 {
@@ -104,6 +106,6 @@ namespace Game.Managers
                     PoolsByID.Add(pool.Prefab.PoolID, pool);
                 }
             }
-        }
+        }        
     }
 }

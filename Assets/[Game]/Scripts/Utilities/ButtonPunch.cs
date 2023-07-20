@@ -31,7 +31,7 @@ public class ButtonPunch : MonoBehaviour
 
     private void AnimateButton()
     {
-        _punchTween?.Kill();
+        _punchTween?.Complete();
         _punchTween = body.DOPunchScale(Vector2.one * punchStrength, pucnhDuration, 1, 1).SetEase(punchEase).SetLink(body.gameObject);
     }
 }
